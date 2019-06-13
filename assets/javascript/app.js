@@ -9,23 +9,19 @@ var query = "coffee"
 var queryURL = `https://api.foursquare.com/v2/venues/explore?client_id=${clientIDFoursquare}&client_secret=${clientSecret}&v=20180323&limit=1&ll=40.7243,-74.0018&query=${query}`
 
 
-
-var myurl = "";
-
 $( document ).ready(function() {
    $.ajax({
       url: queryURL,
       method: 'GET',
       dataType: 'json',
-      success: function(data){
-         console.log('success' + data);
-      }
+      qs: {
+         client_id: clientIDFoursquare,
+         client_secret: clientSecret',
+         ll: '40.7243,-74.0018',
+         query: query,
+         v: '20180323',
+         limit: 1
+      });
+   });
 
-    })
-    .catch(function() {
-       console.log("error");
-        // Code for handling errors
-    });
-
-      console.log("js is working");
-        });   
+       
