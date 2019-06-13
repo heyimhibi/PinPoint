@@ -5,8 +5,10 @@ var states = ["Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorad
 
 
 var query = "coffee"
+var searchInput = "37214"
+var responsesLimit = 10
 
-var queryURL = `https://api.foursquare.com/v2/venues/explore?client_id=${clientIDFoursquare}&client_secret=${clientSecret}&v=20180323&limit=1&ll=40.7243,-74.0018&query=${query}`
+var queryURL = `https://api.foursquare.com/v2/venues/search?client_id=${clientIDFoursquare}&client_secret=${clientSecret}&v=20180323&limit=${responsesLimit}&near=${searchInput}&query=${query}`
 
 
 $( document ).ready(function() {
@@ -16,12 +18,14 @@ $( document ).ready(function() {
       dataType: 'json',
       qs: {
          client_id: clientIDFoursquare,
-         client_secret: clientSecret',
-         ll: '40.7243,-74.0018',
+         client_secret: clientSecret,
+         near: searchInput,
          query: query,
-         v: '20180323',
-         limit: 1
-      });
-   });
+         limit: responsesLimit
+      }
+   }).then(function(response){
+      console.log (response);
+   })
 
+})
        
