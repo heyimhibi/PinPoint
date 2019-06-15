@@ -66,6 +66,19 @@ $(document).ready(function () {
          console.log(response);
       });
 
+      $.ajax({
+         url: `https://api.openweathermap.org/data/2.5/weather?q=${searchInput}&APPID=9f948945c2a7499da3eb43a912f67a23`,
+         method: "GET",
+         success: function (response) {
+             var tempF = (Math.floor((response.main.temp - 273.15) * 1.80 + 32));
+             console.log(response);
+             console.log(tempF);
+         },
+         error: function () {
+             $("#results").text("Whoops! 😕 This is not a valid location.");
+         }
+     });
+
    });
 
 });
