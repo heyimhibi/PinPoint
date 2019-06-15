@@ -20,9 +20,7 @@ $(document).ready(function () {
 
 
    var query = "restaurant"
-   var searchInput = $("#school-search").val().trim();
    var responsesLimit = 30
-
    var searchInput = "";
 
    // var queryURL = `https://api.foursquare.com/v2/venues/search?client_id=${clientIDFoursquare}&client_secret=${clientSecret}&v=20180323&limit=${responsesLimit}&near=${searchInput}&query=${query}`
@@ -32,8 +30,6 @@ $(document).ready(function () {
       event.preventDefault();
 
       searchInput = $("#school-search").val().trim();
-
-      var queryURL = `https://api.foursquare.com/v2/venues/search?client_id=${clientIDFoursquare}&client_secret=${clientSecret}&v=20180323&limit=${responsesLimit}&near=${searchInput}&query=${query}`
 
       // WORKING BY COLLEGE
       $.ajax({
@@ -68,4 +64,27 @@ $(document).ready(function () {
 
    });
 
+//On-Click function for when event topic card is clicked. Making call to FourSquare API.
+   $("#fitnessButton").on("click", function(){
+      event.preventDefault();
+      query = "fitness";
+      schoolZip = "";
+      var queryURL = `https://api.foursquare.com/v2/venues/explore?client_id=${clientIDFoursquare}&client_secret=${clientSecret}&v=20180323&limit=${responsesLimit}&near=${schoolZip}&query=${query}`;
+      $.ajax({
+         url: queryURL,
+         method: 'GET',
+         dataType: 'json',
+         qs: {
+            client_id: clientIDFoursquare,
+            client_secret: clientSecret,
+            near: schoolZip,
+            query: query,
+            limit: responsesLimit
+         }
+      }).then(function (response) {
+         console.log(response);
+      });
+
+   })
 });
+
