@@ -1,3 +1,4 @@
-.card-columns {
-    display: inline-block
-};
+
+.container-fluid {
+    display:inline-block;
+}
