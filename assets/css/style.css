@@ -1,0 +1,15 @@
+
+
+.card-body {
+    background-color: black;
+    color: white;
+}
+
+.carousel-item {
+   max-height: 600px;
+ }
+
+ .carousel-caption {
+     background-color: gray;
+     opacity: .8;
+ }
