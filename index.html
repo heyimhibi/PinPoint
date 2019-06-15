@@ -34,8 +34,8 @@
                 </li>
               </ul>
               <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit"> Search </button>
+                <input id="school-search" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button id="search" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
               </form>
             </div>
           </nav>
@@ -95,6 +95,8 @@
               <span class="sr-only">Next</span>
             </a>
           </div>
+
+          <div id="results"></div>
           
           <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
           <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
@@ -105,8 +107,6 @@
           </script>
         
           <script src="assets/javascript/app.js"></script>
-
-
 
 </body>
 
