@@ -1,7 +1,10 @@
 
-
+body {
+    background-image: url("https://cdn-images-1.medium.com/max/2600/1*7243efiQ5XEy672hwU2V6g.jpeg");
+    background-position:center;
+}
 .card-body {
-    background-color: black;
+    background-color:gray;
     color: white;
 }
 
