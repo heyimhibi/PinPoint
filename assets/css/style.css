@@ -1,5 +1,6 @@
-.input-group {
-    width: 30%;
+#state-group, #school-group {
+    width: 90%;
+    margin: 1rem auto;
 }
 
 .card-body {
