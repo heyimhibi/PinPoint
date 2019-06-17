@@ -216,80 +216,87 @@ $(document).ready(function () {
 
    var schoolZip;
 
-   var stateSchools = [];
-   var dataGovPageNumber = 0;
-
    for (var i = 0; i < states.length; i++) {
       stateChoice = $("<option>").text(states[i].name).attr("value", states[i].abbreviation);
       $("#state-selection").append(stateChoice);
    };
 
    $("#state-selection").change(function () {
+
+      var stateSchools = [];
+      var dataGovPageNumber = 0;
+      var resultsTotal = 0;
+      var totalNumberOfSchools = 0;
+
       $("#school-selection").empty();
       searchInput = $(this).val();
       $("#school-selection").append($("<option>").text("Choose an Institution"));
       $("#school-group").show();
 
-      $.ajax({
-         url: `https://api.data.gov/ed/collegescorecard/v1/schools?api_key=B8ab3aPW1VmB52ZmHPMpgyftQXVVd1aRiDbYbnxl&school.state=${searchInput}&_fields=school.name&_per_page=100&_page=${dataGovPageNumber}&_sort=school.name`,
-         method: "GET"
-      }).then(function (response) {
-         var results = response.results;
-         console.log(results);
-         for (var j = 0; j < results.length; j++) {
-            schoolChoice = $("<option>").text(results[j]["school.name"]);
-            $("#school-selection").append(schoolChoice);
-         };
-      });
+      getInstitution(dataGovPageNumber);
 
       $("#search").on("click", function () {
          event.preventDefault();
 
+         // Pulls stored school-id from option HTML element
+         searchSchoolId = $("#school-selection option:selected").attr("data-id");
+
          // WORKING BY COLLEGE
-
-
-         // $.ajax({
-         //    url: `https://api.data.gov/ed/collegescorecard/v1/schools?api_key=B8ab3aPW1VmB52ZmHPMpgyftQXVVd1aRiDbYbnxl&school.state=${searchInput}&_fields=school.name&_per_page=100&_page=${dataGovPageNumber}&_sort=school.name`,
-         //    method: "GET"
-         // }).then(function (response) {
-
-         // });
-
-         // var results = response.results[0];
-         // var schoolCostDiv = $("<div>").text(searchInput + " has an average year cost of " + results.latest.cost.avg_net_price.overall);
-         // var schoolSizeDiv = $("<div>").text(searchInput + " has " + results.latest.student.enrollment.all + " students currently enrolled.");
-         // console.log(results.latest);
-         // console.log(results.latest.cost.attendance.academic_year);
-         // console.log(results.latest.cost.avg_net_price.overall);
-         // console.log(results.school.zip);
-         // console.log(results.school.city);
-         // console.log(results.school.state);
-         // console.log(schoolZip);
-         // $("#results").append(schoolCostDiv, schoolSizeDiv);
-
          $.ajax({
-            url: `https://api.data.gov/ed/collegescorecard/v1/schools?api_key=B8ab3aPW1VmB52ZmHPMpgyftQXVVd1aRiDbYbnxl&school.state=${searchInput}&_fields=school.name&_per_page=100&_page=${dataGovPageNumber}&_sort=school.name`,
+            url: `https://api.data.gov/ed/collegescorecard/v1/schools?api_key=B8ab3aPW1VmB52ZmHPMpgyftQXVVd1aRiDbYbnxl&id=${searchSchoolId}`,
             method: "GET"
          }).then(function (response) {
-            for (var j = 0; j < results.length; j++) {
-               stateSchools.push(results[i]);
-            }
-            console.log(stateSchools);
+            var results = response.results[0];
+            var schoolName = results.school.name;
+            var schoolCostDiv = $("<div>").text(schoolName + " has an average year cost of " + results.latest.cost.avg_net_price.overall);
+            var schoolSizeDiv = $("<div>").text(schoolName + " has " + results.latest.student.enrollment.all + " students currently enrolled.");
+            schoolZip = results.school.zip;
+            $("#results").append(schoolCostDiv, schoolSizeDiv);
 
-            // $.ajax({
-            //    url: `https://api.openweathermap.org/data/2.5/weather?q=${schoolZip}&APPID=9f948945c2a7499da3eb43a912f67a23`,
-            //    method: "GET",
-            //    success: function (response) {
-            //       var tempF = (Math.floor((response.main.temp - 273.15) * 1.80 + 32));
-            //       $("#results").append("The current temp in " + searchInput + " is " + tempF + ".")
-            //    },
-            //    error: function () {
-            //       $("#results").append("Whoops! 😕 This is not a valid location.");
-            //    }
-            // });
+            // OpenWeatherMap Search by School Zip
+            $.ajax({
+               url: `https://api.openweathermap.org/data/2.5/weather?q=${schoolZip}&APPID=9f948945c2a7499da3eb43a912f67a23`,
+               method: "GET",
+               success: function (response) {
+                  console.log(response);
+                  var tempF = (Math.floor((response.main.temp - 273.15) * 1.80 + 32));
+                  $("#results").append("The current temp at " + schoolName + " is " + tempF + ".")
+               },
+               error: function () {
+                  $("#results").append("Whoops! 😕 This is not a valid location.");
+               }
+            });
+
          });
-
+         
       });
+
+      function getInstitution(num) {
+         $.ajax({
+            url: `https://api.data.gov/ed/collegescorecard/v1/schools?api_key=B8ab3aPW1VmB52ZmHPMpgyftQXVVd1aRiDbYbnxl&school.state=${searchInput}&_fields=school.name,id&_per_page=100&_page=${dataGovPageNumber}&_sort=school.name`,
+            method: "GET"
+         }).then(function (response) {
+            var results = response.results;
+            console.log(results);
+            var resultsLength = response.results.length; // 100
+            totalNumberOfSchools = response.metadata.total; // 176
+            resultsTotal = resultsTotal + resultsLength;
+            // Loops through the results to dynamically create dropdown menu options.
+            for (var j = 0; j < results.length; j++) {
+               schoolChoice = $("<option>").text(results[j]["school.name"]);
+               schoolChoice.attr("value", results[j]["school.name"]);
+               schoolChoice.attr("data-id", results[j]["id"]);
+               $("#school-selection").append(schoolChoice);
+            };
+            // Increments the page request in order to pull the next sets of institutions.
+            dataGovPageNumber++;
+            console.log(resultsTotal);
+            // The function calls itself if there are more schools than the result query max of 100.
+            if (resultsTotal < totalNumberOfSchools) {
+               getInstitution(num);
+            }
+         });
+      };
 
    });
 
