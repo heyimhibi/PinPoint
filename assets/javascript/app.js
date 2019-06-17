@@ -6,9 +6,7 @@ $(document).ready(function () {
    var clientSecret = "P34QO4OTCFM4J5LFMU3MXH4B4GCXDTZ3EGPZCU1QBCCWBZ0Y"
 
    var query = "restaurant"
-   var searchInput = $("#school-search").val().trim();
    var responsesLimit = 30
-
    var searchInput = "";
 
    var schoolZip;
@@ -34,13 +32,13 @@ $("#search").on("click", function () {
       console.log(results.school.city);
       console.log(results.school.state);
       console.log(schoolZip);
-      $("#results").append(schoolCostDiv, schoolSizeDiv)
-
+      $("#results").append(schoolCostDiv, schoolSizeDiv);
       $.ajax({
          url: `https://api.openweathermap.org/data/2.5/weather?q=${schoolZip}&APPID=9f948945c2a7499da3eb43a912f67a23`,
          method: "GET",
          success: function (response) {
             var tempF = (Math.floor((response.main.temp - 273.15) * 1.80 + 32));
+            console.log("WEATHER: "+results);
             $("#results").append("The current temp in " + searchInput + " is " + tempF + ".")
          },
          error: function () {
@@ -49,4 +47,28 @@ $("#search").on("click", function () {
       });
    });
 
+//On-Click function for when event topic card is clicked. Making call to FourSquare API for fitness in the area.
+   $("#fitnessButton").on("click", function(){
+      event.preventDefault();
+      query = "fitness";
+      schoolZip = "";
+      var queryURL = `https://api.foursquare.com/v2/venues/explore?client_id=${clientIDFoursquare}&client_secret=${clientSecret}&v=20180323&limit=${responsesLimit}&near=${schoolZip}&query=${query}`;
+      $.ajax({
+         url: queryURL,
+         method: 'GET',
+         dataType: 'json',
+         qs: {
+            client_id: clientIDFoursquare,
+            client_secret: clientSecret,
+            near: schoolZip,
+            query: query,
+            limit: responsesLimit
+         }
+      }).then(function (response) {
+         console.log(response);
+      });
+      $("#results").append() //<--Need card elements to append with results inserted into them
+
+   });
 });
+
