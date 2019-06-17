@@ -307,6 +307,7 @@ $(document).ready(function () {
       query = "fitness";
       schoolZip = "37240";
       var queryURL = `https://api.foursquare.com/v2/venues/explore?client_id=${clientIDFoursquare}&client_secret=${clientSecret}&v=20180323&limit=${responsesLimit}&near=${schoolZip}&query=${query}`;
+      var locationAddress = [];
       $.ajax({
          url: queryURL,
          method: 'GET',
@@ -321,11 +322,14 @@ $(document).ready(function () {
       }).then(function (response) {
          for (var i=0;i<response.response.groups[0].items.length;i++){
             fitnessResults.push(response.response.groups[0].items[i].venue.name);
+            locationAddress.push(response.response.groups[0].items[i].venue.location.formattedAddress[0])
          }
          console.log(response.response.groups[0].items);
          console.log(fitnessResults);
+         console.log(locationAddress);
          for (var j=0;j<fitnessResults.length;j++){
-            $("#resultsDiv").append("<div class='row'><div class=card  style='width: 18rem;'><img src='https://www.cbc.ca/parents/content/imgs/kidsatconcerts_lead_emissio.jpg' class='card-img-top' alt='event-image'><h5 class='card-title mt-2'> Fitness</h5><p class='card-text'> Fitness Result #X</p><a href='#' class='btn btn btn-light' id='fitnessButton'> Search </a></div></div></div>")
+            $("#resultsDiv").append("<div class='row'><div class=card  style='width: 18rem;'><img src='https://www.cbc.ca/parents/content/imgs/kidsatconcerts_lead_emissio.jpg' class='card-img-top' alt='event-image'><h5 class='card-title mt-2'><span id=locationName></span></h5><p class='card-text'><span id=address></span></p><a href='#' class='btn btn btn-light' id='fitnessButton'> Search </a></div></div></div>")
+            $("#locationName").text(fitnessResults[j]);
          }
       });
 
