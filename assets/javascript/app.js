@@ -211,7 +211,6 @@ $(document).ready(function () {
 
    var query = "restaurant"
    var responsesLimit = 30
-
    var searchInput = "";
 
    var schoolZip;
@@ -268,7 +267,7 @@ $(document).ready(function () {
             });
 
          });
-         
+ 
       });
 
       function getInstitution(num) {
@@ -300,4 +299,28 @@ $(document).ready(function () {
 
    });
 
+//On-Click function for when event topic card is clicked. Making call to FourSquare API for fitness in the area.
+   $("#fitnessButton").on("click", function(){
+      event.preventDefault();
+      query = "fitness";
+      schoolZip = "";
+      var queryURL = `https://api.foursquare.com/v2/venues/explore?client_id=${clientIDFoursquare}&client_secret=${clientSecret}&v=20180323&limit=${responsesLimit}&near=${schoolZip}&query=${query}`;
+      $.ajax({
+         url: queryURL,
+         method: 'GET',
+         dataType: 'json',
+         qs: {
+            client_id: clientIDFoursquare,
+            client_secret: clientSecret,
+            near: schoolZip,
+            query: query,
+            limit: responsesLimit
+         }
+      }).then(function (response) {
+         console.log(response);
+      });
+      $("#results").append() //<--Need card elements to append with results inserted into them
+
+   });
 });
+
