@@ -1,12 +1,56 @@
-
 body {
-    background-image: url("https://cdn-images-1.medium.com/max/2600/1*7243efiQ5XEy672hwU2V6g.jpeg");
-    background-position:center;
+    /* Opinion (Terrence): This background is a jarring. Would recommend something softer/neutral
+    /* background-image: url("https://cdn-images-1.medium.com/max/2600/1*7243efiQ5XEy672hwU2V6g.jpeg"); */
+    background-position: center;
     background-attachment: fixed;
     background-size: cover;
-  
 }
-#state-group, #school-group {
+
+#nav {
+    z-index: 100;
+    position: fixed;
+    width: 100%;
+}
+
+.input-selectors {
+    position: absolute;
+    left: 25%;
+    top: 40%;
+    margin: 0 auto;
+    width: 50%;
+    z-index: 3;
+}
+
+#selector-background-color {
+    margin: auto;
+    padding: 2%;
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 5px;
+}
+
+.img-fluid {
+    /* max-height: 600px; */
+    height: 100vh;
+    object-fit: cover;
+}
+
+.carousel-caption {
+    color: white;
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 5px;
+}
+
+.carouselControls {
+    position: absolute;
+    z-index: -1;
+}
+
+.carousel-inner {
+    height: 100vh;
+}
+
+#state-group,
+#school-group {
     width: auto;
     margin: 1rem auto;
 }
@@ -18,40 +62,10 @@ body {
 .ball-pulse-sync {
     display: none;
     text-align: center;
+    padding-top: 1rem;
 }
-
 
 .card-body {
-    background-color:gray;
+    background-color: gray;
     color: white;
 }
-
-.carouselControls  {
-    position: absolute;
-    z-index: -1;
-
-}
-
-.input-selectors{
-    position: absolute;
-    left: 25%;
-    top: 40%;
-    margin: 0 auto;
-    width: 50%;
-     z-index: 3;
-    
- }
-
- #selector-background-color {
-     margin: auto;
-     padding: 2%;
-     background: rgba(0,0,0, 0.6);
- }
-.carousel-item {
-   max-height: 600px;
- }
-
- .carousel-caption {
-     color: white;
-     background: rgba(0,0,0, 0.6);
- }

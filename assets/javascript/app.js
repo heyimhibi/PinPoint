@@ -280,7 +280,6 @@ $(document).ready(function () {
             method: "GET"
          }).then(function (response) {
             var results = response.results;
-            console.log(results);
             var resultsLength = response.results.length; // 100
             totalNumberOfSchools = response.metadata.total; // 176
             resultsTotal = resultsTotal + resultsLength;
@@ -293,7 +292,6 @@ $(document).ready(function () {
             };
             // Increments the page request in order to pull the next sets of institutions.
             dataGovPageNumber++;
-            console.log(resultsTotal);
             // The function calls itself if there are more schools than the result query max of 100.
             if (resultsTotal < totalNumberOfSchools) {
                getInstitution(num);
