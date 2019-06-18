@@ -239,6 +239,12 @@ $(document).ready(function () {
       $("#search").on("click", function () {
          event.preventDefault();
 
+         animateCSS("#selection-page", "fadeOut", function() {
+            $("#selection-page").hide();
+            $("#results-page").show();
+            animateCSS("#results-page", "fadeIn");
+         });
+
          // Pulls stored school-id from option HTML element
          searchSchoolId = $("#school-selection option:selected").attr("data-id");
 
@@ -249,10 +255,11 @@ $(document).ready(function () {
          }).then(function (response) {
             var results = response.results[0];
             var schoolName = results.school.name;
-            var schoolCostDiv = $("<div>").text(schoolName + " has an average year cost of " + results.latest.cost.avg_net_price.overall);
-            var schoolSizeDiv = $("<div>").text(schoolName + " has " + results.latest.student.enrollment.all + " students currently enrolled.");
-            schoolZip = results.school.zip;
-            $("#results").append(schoolCostDiv, schoolSizeDiv);
+            $("#enrollment").text(schoolName + " has an average year cost of " + results.latest.cost.avg_net_price.overall);
+            $("#cost").text(schoolName + " has " + results.latest.student.enrollment.all + " students currently enrolled.");
+            var string = results.school.zip;
+            var zipLength = 5;
+            schoolZip = string.substring(0, zipLength);
 
             // OpenWeatherMap Search by School Zip
             $.ajax({
@@ -261,14 +268,16 @@ $(document).ready(function () {
                success: function (response) {
                   console.log(response);
                   var tempF = (Math.floor((response.main.temp - 273.15) * 1.80 + 32));
-                  $("#results").append("The current temp at " + schoolName + " is " + tempF + ".")
+                  $("#weather").text("The current temp at " + schoolName + " is " + tempF + ".")
                },
                error: function () {
-                  $("#results").append("Whoops! 😕 This is not a valid location.");
+                  $("#weather").text("Whoops! 😕 This is not a valid location.");
                }
             });
 
          });
+
+         $(".toast").toast("show");
 
       });
 
@@ -295,7 +304,7 @@ $(document).ready(function () {
             // The function calls itself if there are more schools than the result query max of 100.
             if (resultsTotal < totalNumberOfSchools) {
                getInstitution(num);
-               
+
             } else {
                $(".ball-pulse-sync").hide();
                $("#school-group").attr("class", "animated zoomIn faster")
@@ -309,9 +318,8 @@ $(document).ready(function () {
    //On-Click function for when event topic card is clicked. Making call to FourSquare API for fitness in the area.
    $("#fitnessButton").on("click", function () {
       event.preventDefault();
-      $("#resultsDiv").empty();
+      $("#results-page").empty();
       query = "fitness";
-      schoolZip = "37240";
       var queryURL = `https://api.foursquare.com/v2/venues/explore?client_id=${clientIDFoursquare}&client_secret=${clientSecret}&v=20180323&limit=${responsesLimit}&near=${schoolZip}&query=${query}`;
       var locationAddress = [];
       $.ajax({
@@ -334,8 +342,8 @@ $(document).ready(function () {
          console.log(fitnessResults);
          console.log(locationAddress);
          for (var j = 0; j < fitnessResults.length; j++) {
-            var newCard = $("<div class='row'><div class=card  style='width: 18rem;'><div class='card-body' data-fitness=" + j + "><img src='https://assets.dmagstatic.com/wp-content/uploads/2019/01/iStock-871070868-677x451.jpg' class='card-img-top' alt='event-image'><h5 class='card-title mt-2'>" + fitnessResults[j] + "</h5><p class='card-text'>" + locationAddress[j] + "</p></div></div></div>")
-            $("#resultsDiv").append(newCard);
+            var newCard = $("<div class='row'><div class=card  style='width: 18rem;'><div class='card-body' data-fitness=" + j + "><img src='http://assets.dmagstatic.com/wp-content/uploads/2019/01/iStock-871070868-677x451.jpg' class='card-img-top' alt='event-image'><h5 class='card-title mt-2'>" + fitnessResults[j] + "</h5><p class='card-text'>" + locationAddress[j] + "</p></div></div></div>")
+            $("#results-page").append(newCard);
          }
       });
 
@@ -345,9 +353,8 @@ $(document).ready(function () {
    //On-Click function for when event topic card is clicked. Making call to FourSquare API for restaurants in the area.
    $("#foodButton").on("click", function () {
       event.preventDefault();
-      $("#resultsDiv").empty();
+      $("#results-page").empty();
       query = "restaurants";
-      schoolZip = "37240";
       var queryURL = `https://api.foursquare.com/v2/venues/explore?client_id=${clientIDFoursquare}&client_secret=${clientSecret}&v=20180323&limit=${responsesLimit}&near=${schoolZip}&query=${query}`;
       var locationAddress = [];
       $.ajax({
@@ -370,8 +377,8 @@ $(document).ready(function () {
          console.log(foodResults);
          console.log(locationAddress);
          for (var j = 0; j < foodResults.length; j++) {
-            var newCard = $("<div class='row'><div class=card  style='width: 18rem;'><div class='card-body' data-food=" + j + "><img src='https://www.studentbrands.co.za/wp-content/uploads/2016/05/2D_SpitBill.jpg' class='card-img-top' alt='event-image'><h5 class='card-title mt-2'>" + foodResults[j] + "</h5><p class='card-text'>" + locationAddress[j] + "</p></div></div></div>")
-            $("#resultsDiv").append(newCard);
+            var newCard = $("<div class='row'><div class=card  style='width: 18rem;'><div class='card-body' data-food=" + j + "><img src='http://www.studentbrands.co.za/wp-content/uploads/2016/05/2D_SpitBill.jpg' class='card-img-top' alt='event-image'><h5 class='card-title mt-2'>" + foodResults[j] + "</h5><p class='card-text'>" + locationAddress[j] + "</p></div></div></div>")
+            $("#results-page").append(newCard);
          }
       });
 
@@ -381,9 +388,8 @@ $(document).ready(function () {
    //On-Click function for when event topic card is clicked. Making call to FourSquare API for restaurants in the area.
    $("#shopButton").on("click", function () {
       event.preventDefault();
-      $("#resultsDiv").empty();
+      $("#results-page").empty();
       query = "shopping";
-      schoolZip = "37240";
       var queryURL = `https://api.foursquare.com/v2/venues/explore?client_id=${clientIDFoursquare}&client_secret=${clientSecret}&v=20180323&limit=${responsesLimit}&near=${schoolZip}&query=${query}`;
       var locationAddress = [];
       $.ajax({
@@ -406,8 +412,8 @@ $(document).ready(function () {
          console.log(shopResults);
          console.log(locationAddress);
          for (var j = 0; j < shopResults.length; j++) {
-            var newCard = $("<div class='row'><div class=card  style='width: 18rem;'><div class='card-body' data-shop=" + j + "><img src='https://www.cbc.ca/parents/content/imgs/kidsatconcerts_lead_emissio.jpg' class='card-img-top' alt='event-image'><h5 class='card-title mt-2'>" + shopResults[j] + "</h5><p class='card-text'>" + locationAddress[j] + "</p></div></div></div>")
-            $("#resultsDiv").append(newCard);
+            var newCard = $("<div class='row'><div class=card  style='width: 18rem;'><div class='card-body' data-shop=" + j + "><img src='http://www.cbc.ca/parents/content/imgs/kidsatconcerts_lead_emissio.jpg' class='card-img-top' alt='event-image'><h5 class='card-title mt-2'>" + shopResults[j] + "</h5><p class='card-text'>" + locationAddress[j] + "</p></div></div></div>")
+            $("#results-page").append(newCard);
          }
       });
 
@@ -417,9 +423,8 @@ $(document).ready(function () {
    //On-Click function for when event topic card is clicked. Making call to FourSquare API for restaurants in the area.
    $("#parksButton").on("click", function () {
       event.preventDefault();
-      $("#resultsDiv").empty();
+      $("#results-page").empty();
       query = "parks";
-      schoolZip = "37240";
       var queryURL = `https://api.foursquare.com/v2/venues/explore?client_id=${clientIDFoursquare}&client_secret=${clientSecret}&v=20180323&limit=${responsesLimit}&near=${schoolZip}&query=${query}`;
       var locationAddress = [];
       $.ajax({
@@ -442,11 +447,25 @@ $(document).ready(function () {
          console.log(parkResults);
          console.log(locationAddress);
          for (var j = 0; j < parkResults.length; j++) {
-            var newCard = $("<div class='row'><div class=card  style='width: 18rem;'><div class='card-body' data-park=" + j + "><img src='https://www.studentbrands.co.za/wp-content/uploads/2016/05/2D_SpitBill.jpg' class='card-img-top' alt='event-image'><h5 class='card-title mt-2'>" + parkResults[j] + "</h5><p class='card-text'>" + locationAddress[j] + "</p></div></div></div>")
-            $("#resultsDiv").append(newCard);
+            var newCard = $("<div class='row'><div class=card  style='width: 18rem;'><div class='card-body' data-park=" + j + "><img src='http://www.studentbrands.co.za/wp-content/uploads/2016/05/2D_SpitBill.jpg' class='card-img-top' alt='event-image'><h5 class='card-title mt-2'>" + parkResults[j] + "</h5><p class='card-text'>" + locationAddress[j] + "</p></div></div></div>")
+            $("#results-page").append(newCard);
          }
       });
 
    });
 
 });
+
+function animateCSS(element, animationName, callback) {
+   const node = document.querySelector(element);
+   node.classList.add('animated', animationName, "faster");
+
+   function handleAnimationEnd() {
+      node.classList.remove('animated', animationName);
+      node.removeEventListener('animationend', handleAnimationEnd);
+
+      if (typeof callback === 'function') callback()
+   }
+
+   node.addEventListener('animationend', handleAnimationEnd);
+};

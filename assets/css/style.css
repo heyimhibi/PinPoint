@@ -1,15 +1,23 @@
 body {
     /* Opinion (Terrence): This background is a jarring. Would recommend something softer/neutral
     /* background-image: url("https://cdn-images-1.medium.com/max/2600/1*7243efiQ5XEy672hwU2V6g.jpeg"); */
-    background-position: center;
-    background-attachment: fixed;
-    background-size: cover;
+    background-image: linear-gradient(to right top, #80ffd4, #62edd9, #4fdada, #4bc6d6, #52b2cc);
+    height: 100vh;
 }
 
 #nav {
     z-index: 100;
     position: fixed;
     width: 100%;
+    top: 0;
+}
+
+#background-pin {
+    position: fixed;
+    float: left;
+    z-index: -100;
+    bottom: 0;
+    opacity: 0.5;
 }
 
 .input-selectors {
@@ -63,6 +71,23 @@ body {
     display: none;
     text-align: center;
     padding-top: 1rem;
+}
+
+#results-page {
+    display: none;
+    padding-top: 5rem;
+}
+
+.toaster {
+    position: relative;
+    min-height: 200px;
+    min-width: 300px;
+    margin-right: 1rem;
+    margin-top: 5rem;
+}
+
+.card {
+    background-color: transparent;
 }
 
 .card-body {
