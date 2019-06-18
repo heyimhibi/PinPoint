@@ -99,3 +99,17 @@ body {
     background-color: gray;
     color: white;
 }
+
+
+h2 {
+    margin: 20px;
+}
+
+p {
+    margin: 60px;
+}
+
+#card-group {
+    margin: 20px;
+}
+
