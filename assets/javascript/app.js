@@ -206,6 +206,8 @@ var states = [{
 
 $(document).ready(function () {
 
+   animateNormCSS(".fa-map-pin", "bounceInDown");
+
    var clientIDFoursquare = "QIQOY4DP1NMCYBBDMXYYQOYI0TQDGUX0WJRR5QUJZYV2NLUD";
    var clientSecret = "P34QO4OTCFM4J5LFMU3MXH4B4GCXDTZ3EGPZCU1QBCCWBZ0Y"
 
@@ -259,10 +261,20 @@ $(document).ready(function () {
             var results = response.results[0];
             console.log(results);
             var schoolName = results.school.name;
-            var schoolCost = schoolName + " has an average year cost of $" + results.latest.cost.avg_net_price.overall;
-            var schoolPop = schoolName + " has " + results.latest.student.enrollment.all + " students currently enrolled.";
-            $("#enrollment").text(schoolPop);
-            $("#cost").text(schoolCost);
+            var schoolCost = results.latest.cost.avg_net_price.overall;
+            var schoolPop = results.latest.student.enrollment.all;
+            if (schoolPop === null) {
+               var popMessage = "Whoops! 🤦‍♂️ Something went wrong."
+            } else {
+               var popMessage = schoolName + " has " + schoolPop + " students currently enrolled.";
+            }
+            if (schoolCost === null) {
+               var costMessage = "Whoops! 🤦‍♂️ Something went wrong."
+            } else {
+               var costMessage = schoolName + " has an average year cost of $" + schoolCost;
+            }
+            $("#enrollment").text(popMessage);
+            $("#cost").text(costMessage);
             var string = results.school.zip;
             var zipLength = 5;
             schoolZip = string.substring(0, zipLength);
@@ -286,8 +298,6 @@ $(document).ready(function () {
             });
 
          });
-
-         
 
          $(".toast").toast("show");
 
@@ -490,6 +500,20 @@ $(document).ready(function () {
 function animateCSS(element, animationName, callback) {
    const node = document.querySelector(element);
    node.classList.add('animated', animationName, "faster");
+
+   function handleAnimationEnd() {
+      node.classList.remove('animated', animationName);
+      node.removeEventListener('animationend', handleAnimationEnd);
+
+      if (typeof callback === 'function') callback()
+   }
+
+   node.addEventListener('animationend', handleAnimationEnd);
+};
+
+function animateNormCSS(element, animationName, callback) {
+   const node = document.querySelector(element);
+   node.classList.add('animated', animationName);
 
    function handleAnimationEnd() {
       node.classList.remove('animated', animationName);
