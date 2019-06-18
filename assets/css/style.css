@@ -2,6 +2,7 @@
 body {
     background-image: url("https://cdn-images-1.medium.com/max/2600/1*7243efiQ5XEy672hwU2V6g.jpeg");
     background-position:center;
+  
 }
 #state-group, #school-group {
     width: 90%;
@@ -13,11 +14,32 @@ body {
     color: white;
 }
 
+.carouselControls  {
+    position: absolute;
+    z-index: -1;
+
+}
+
+.input-selectors{
+    position: absolute;
+    left: 25%;
+    top: 40%;
+    margin: 0 auto;
+    width: 50%;
+     z-index: 3;
+    
+ }
+
+ #selector-background-color {
+     margin: auto;
+     padding: 2%;
+     background: rgba(0,0,0, 0.6);
+ }
 .carousel-item {
    max-height: 600px;
  }
 
  .carousel-caption {
-     background-color: gray;
-     opacity: .8;
+     color: white;
+     background: rgba(0,0,0, 0.6);
  }
