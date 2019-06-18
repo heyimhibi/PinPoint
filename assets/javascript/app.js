@@ -214,6 +214,7 @@ $(document).ready(function () {
    var searchInput = "";
    var fitnessResults = [];
    var foodResults = [];
+   var shopResults = [];
 
    var schoolZip;
 
@@ -306,7 +307,6 @@ $(document).ready(function () {
       event.preventDefault();
       $("#resultsDiv").empty();
       query = "fitness";
-      schoolZip = "37240";
       var queryURL = `https://api.foursquare.com/v2/venues/explore?client_id=${clientIDFoursquare}&client_secret=${clientSecret}&v=20180323&limit=${responsesLimit}&near=${schoolZip}&query=${query}`;
       var locationAddress = [];
       $.ajax({
@@ -342,7 +342,6 @@ $("#foodButton").on("click", function(){
    event.preventDefault();
    $("#resultsDiv").empty();
    query = "restaurants";
-   schoolZip = "37240";
    var queryURL = `https://api.foursquare.com/v2/venues/explore?client_id=${clientIDFoursquare}&client_secret=${clientSecret}&v=20180323&limit=${responsesLimit}&near=${schoolZip}&query=${query}`;
    var locationAddress = [];
    $.ajax({
@@ -371,5 +370,76 @@ $("#foodButton").on("click", function(){
    });
 
 });
+
+ 
+//On-Click function for when event topic card is clicked. Making call to FourSquare API for restaurants in the area.
+$("#shopButton").on("click", function(){
+   event.preventDefault();
+   $("#resultsDiv").empty();
+   query = "shopping";
+   var queryURL = `https://api.foursquare.com/v2/venues/explore?client_id=${clientIDFoursquare}&client_secret=${clientSecret}&v=20180323&limit=${responsesLimit}&near=${schoolZip}&query=${query}`;
+   var locationAddress = [];
+   $.ajax({
+      url: queryURL,
+      method: 'GET',
+      dataType: 'json',
+      qs: {
+         client_id: clientIDFoursquare,
+         client_secret: clientSecret,
+         near: schoolZip,
+         query: query,
+         limit: responsesLimit
+      }
+   }).then(function (response) {
+      for (var i=0;i<response.response.groups[0].items.length;i++){
+         shopResults.push(response.response.groups[0].items[i].venue.name);
+         locationAddress.push(response.response.groups[0].items[i].venue.location.formattedAddress[0])
+      }
+      console.log(response.response.groups[0].items);
+      console.log(shopResults);
+      console.log(locationAddress);
+      for (var j=0;j<shopResults.length;j++){
+         var newCard = $("<div class='row'><div class=card  style='width: 18rem;'><div class='card-body' data-shop="+j+"><img src='https://www.cbc.ca/parents/content/imgs/kidsatconcerts_lead_emissio.jpg' class='card-img-top' alt='event-image'><h5 class='card-title mt-2'>"+shopResults[j]+"</h5><p class='card-text'>"+locationAddress[j]+"</p></div></div></div>")
+         $("#resultsDiv").append(newCard);
+      }
+   });
+
+});
+
+ 
+//On-Click function for when event topic card is clicked. Making call to FourSquare API for restaurants in the area.
+$("#parksButton").on("click", function(){
+   event.preventDefault();
+   $("#resultsDiv").empty();
+   query = "parks";
+   var queryURL = `https://api.foursquare.com/v2/venues/explore?client_id=${clientIDFoursquare}&client_secret=${clientSecret}&v=20180323&limit=${responsesLimit}&near=${schoolZip}&query=${query}`;
+   var locationAddress = [];
+   $.ajax({
+      url: queryURL,
+      method: 'GET',
+      dataType: 'json',
+      qs: {
+         client_id: clientIDFoursquare,
+         client_secret: clientSecret,
+         near: schoolZip,
+         query: query,
+         limit: responsesLimit
+      }
+   }).then(function (response) {
+      for (var i=0;i<response.response.groups[0].items.length;i++){
+         parkResults.push(response.response.groups[0].items[i].venue.name);
+         locationAddress.push(response.response.groups[0].items[i].venue.location.formattedAddress[0])
+      }
+      console.log(response.response.groups[0].items);
+      console.log(parkResults);
+      console.log(locationAddress);
+      for (var j=0;j<parkResults.length;j++){
+         var newCard = $("<div class='row'><div class=card  style='width: 18rem;'><div class='card-body' data-park="+j+"><img src='https://www.cbc.ca/parents/content/imgs/kidsatconcerts_lead_emissio.jpg' class='card-img-top' alt='event-image'><h5 class='card-title mt-2'>"+parkResults[j]+"</h5><p class='card-text'>"+locationAddress[j]+"</p></div></div></div>")
+         $("#resultsDiv").append(newCard);
+      }
+   });
+
+});
+
 });
 
