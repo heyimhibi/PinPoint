@@ -22,7 +22,7 @@
     var userEmail = $("#email-input").val().trim();
     var userMessage = $("#message-input").val().trim();
   
-    // Creates local "temporary" object for holding employee data
+
     var newUser = {
       name: userName,
       email: userEmail,
