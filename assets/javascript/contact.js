@@ -1,6 +1,6 @@
 
 
-  var firebaseConfig = {
+   var firebaseConfig = {
     apiKey: "AIzaSyC6czO70FR-41_kSaHpuGOJ1JpfCC5_iOI",
     authDomain: "pinpoint-6e90c.firebaseapp.com",
     databaseURL: "https://pinpoint-6e90c.firebaseio.com",
