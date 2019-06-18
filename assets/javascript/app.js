@@ -328,8 +328,8 @@ $(document).ready(function () {
          console.log(fitnessResults);
          console.log(locationAddress);
          for (var j=0;j<fitnessResults.length;j++){
-            $("#resultsDiv").append("<div class='row'><div class=card  style='width: 18rem;'><img src='https://www.cbc.ca/parents/content/imgs/kidsatconcerts_lead_emissio.jpg' class='card-img-top' alt='event-image'><h5 class='card-title mt-2'><span id=locationName></span></h5><p class='card-text'><span id=address></span></p><a href='#' class='btn btn btn-light' id='fitnessButton'> Search </a></div></div></div>")
-            $("#locationName").text(fitnessResults[j]);
+            var newCard = $("<div class='row'><div class=card  style='width: 18rem;'><div class='card-body' data-fitness="+j+"><img src='https://www.cbc.ca/parents/content/imgs/kidsatconcerts_lead_emissio.jpg' class='card-img-top' alt='event-image'><h5 class='card-title mt-2'>"+fitnessResults[j]+"</h5><p class='card-text'>"+locationAddress[j]+"</p></div></div></div>")
+            $("#resultsDiv").append(newCard);
          }
       });
 
