@@ -7,9 +7,19 @@ body {
   
 }
 #state-group, #school-group {
-    width: 90%;
+    width: auto;
     margin: 1rem auto;
 }
+
+#school-group {
+    display: none;
+}
+
+.ball-pulse-sync {
+    display: none;
+    text-align: center;
+}
+
 
 .card-body {
     background-color:gray;
