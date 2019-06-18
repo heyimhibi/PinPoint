@@ -307,6 +307,7 @@ $(document).ready(function () {
       event.preventDefault();
       $("#resultsDiv").empty();
       query = "fitness";
+      schoolZip = "37240";
       var queryURL = `https://api.foursquare.com/v2/venues/explore?client_id=${clientIDFoursquare}&client_secret=${clientSecret}&v=20180323&limit=${responsesLimit}&near=${schoolZip}&query=${query}`;
       var locationAddress = [];
       $.ajax({
@@ -329,7 +330,7 @@ $(document).ready(function () {
          console.log(fitnessResults);
          console.log(locationAddress);
          for (var j=0;j<fitnessResults.length;j++){
-            var newCard = $("<div class='row'><div class=card  style='width: 18rem;'><div class='card-body' data-fitness="+j+"><img src='https://www.cbc.ca/parents/content/imgs/kidsatconcerts_lead_emissio.jpg' class='card-img-top' alt='event-image'><h5 class='card-title mt-2'>"+fitnessResults[j]+"</h5><p class='card-text'>"+locationAddress[j]+"</p></div></div></div>")
+            var newCard = $("<div class='row'><div class=card  style='width: 18rem;'><div class='card-body' data-fitness="+j+"><img src='https://assets.dmagstatic.com/wp-content/uploads/2019/01/iStock-871070868-677x451.jpg' class='card-img-top' alt='event-image'><h5 class='card-title mt-2'>"+fitnessResults[j]+"</h5><p class='card-text'>"+locationAddress[j]+"</p></div></div></div>")
             $("#resultsDiv").append(newCard);
          }
       });
@@ -342,6 +343,7 @@ $("#foodButton").on("click", function(){
    event.preventDefault();
    $("#resultsDiv").empty();
    query = "restaurants";
+   schoolZip = "37240";
    var queryURL = `https://api.foursquare.com/v2/venues/explore?client_id=${clientIDFoursquare}&client_secret=${clientSecret}&v=20180323&limit=${responsesLimit}&near=${schoolZip}&query=${query}`;
    var locationAddress = [];
    $.ajax({
@@ -364,7 +366,7 @@ $("#foodButton").on("click", function(){
       console.log(foodResults);
       console.log(locationAddress);
       for (var j=0;j<foodResults.length;j++){
-         var newCard = $("<div class='row'><div class=card  style='width: 18rem;'><div class='card-body' data-food="+j+"><img src='https://www.cbc.ca/parents/content/imgs/kidsatconcerts_lead_emissio.jpg' class='card-img-top' alt='event-image'><h5 class='card-title mt-2'>"+foodResults[j]+"</h5><p class='card-text'>"+locationAddress[j]+"</p></div></div></div>")
+         var newCard = $("<div class='row'><div class=card  style='width: 18rem;'><div class='card-body' data-food="+j+"><img src='https://www.studentbrands.co.za/wp-content/uploads/2016/05/2D_SpitBill.jpg' class='card-img-top' alt='event-image'><h5 class='card-title mt-2'>"+foodResults[j]+"</h5><p class='card-text'>"+locationAddress[j]+"</p></div></div></div>")
          $("#resultsDiv").append(newCard);
       }
    });
@@ -377,6 +379,7 @@ $("#shopButton").on("click", function(){
    event.preventDefault();
    $("#resultsDiv").empty();
    query = "shopping";
+   schoolZip = "37240";
    var queryURL = `https://api.foursquare.com/v2/venues/explore?client_id=${clientIDFoursquare}&client_secret=${clientSecret}&v=20180323&limit=${responsesLimit}&near=${schoolZip}&query=${query}`;
    var locationAddress = [];
    $.ajax({
@@ -412,6 +415,7 @@ $("#parksButton").on("click", function(){
    event.preventDefault();
    $("#resultsDiv").empty();
    query = "parks";
+   schoolZip = "37240";
    var queryURL = `https://api.foursquare.com/v2/venues/explore?client_id=${clientIDFoursquare}&client_secret=${clientSecret}&v=20180323&limit=${responsesLimit}&near=${schoolZip}&query=${query}`;
    var locationAddress = [];
    $.ajax({
@@ -434,7 +438,7 @@ $("#parksButton").on("click", function(){
       console.log(parkResults);
       console.log(locationAddress);
       for (var j=0;j<parkResults.length;j++){
-         var newCard = $("<div class='row'><div class=card  style='width: 18rem;'><div class='card-body' data-park="+j+"><img src='https://www.cbc.ca/parents/content/imgs/kidsatconcerts_lead_emissio.jpg' class='card-img-top' alt='event-image'><h5 class='card-title mt-2'>"+parkResults[j]+"</h5><p class='card-text'>"+locationAddress[j]+"</p></div></div></div>")
+         var newCard = $("<div class='row'><div class=card  style='width: 18rem;'><div class='card-body' data-park="+j+"><img src='https://www.studentbrands.co.za/wp-content/uploads/2016/05/2D_SpitBill.jpg' class='card-img-top' alt='event-image'><h5 class='card-title mt-2'>"+parkResults[j]+"</h5><p class='card-text'>"+locationAddress[j]+"</p></div></div></div>")
          $("#resultsDiv").append(newCard);
       }
    });
