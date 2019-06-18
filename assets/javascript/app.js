@@ -230,6 +230,9 @@ $(document).ready(function () {
       var resultsTotal = 0;
       var totalNumberOfSchools = 0;
 
+      var schoolLat = 0;
+      var schoolLon = 0;
+
       $("#school-selection").empty();
       searchInput = $(this).val();
       $("#school-selection").append($("<option>").text("Choose an Institution"));
@@ -239,7 +242,7 @@ $(document).ready(function () {
       $("#search").on("click", function () {
          event.preventDefault();
 
-         animateCSS("#selection-page", "fadeOut", function() {
+         animateCSS("#selection-page", "fadeOut", function () {
             $("#selection-page").hide();
             $("#results-page").show();
             animateCSS("#results-page", "fadeIn");
@@ -254,12 +257,19 @@ $(document).ready(function () {
             method: "GET"
          }).then(function (response) {
             var results = response.results[0];
+            console.log(results);
             var schoolName = results.school.name;
-            $("#enrollment").text(schoolName + " has an average year cost of " + results.latest.cost.avg_net_price.overall);
-            $("#cost").text(schoolName + " has " + results.latest.student.enrollment.all + " students currently enrolled.");
+            var schoolCost = schoolName + " has an average year cost of $" + results.latest.cost.avg_net_price.overall;
+            var schoolPop = schoolName + " has " + results.latest.student.enrollment.all + " students currently enrolled.";
+            $("#enrollment").text(schoolPop);
+            $("#cost").text(schoolCost);
             var string = results.school.zip;
             var zipLength = 5;
             schoolZip = string.substring(0, zipLength);
+            schoolLat = results.location.lat;
+            schoolLon = results.location.lon;
+
+            initMap(schoolLat, schoolLon, searchInput);
 
             // OpenWeatherMap Search by School Zip
             $.ajax({
@@ -276,6 +286,8 @@ $(document).ready(function () {
             });
 
          });
+
+         
 
          $(".toast").toast("show");
 
@@ -313,12 +325,31 @@ $(document).ready(function () {
          });
       };
 
+      function initMap(num1, num2, str) {
+         var myMarker = {
+            lat: num1,
+            lng: num2
+         };
+
+         var map = new google.maps.Map(document.getElementById('map'), {
+            center: myMarker,
+            zoom: 15,
+            disableDefaultUI: true
+         });
+
+         var marker = new google.maps.Marker({
+            position: myMarker,
+            map: map,
+            title: str,
+         });
+      };
+
    });
 
    //On-Click function for when event topic card is clicked. Making call to FourSquare API for fitness in the area.
    $("#fitnessButton").on("click", function () {
       event.preventDefault();
-      $("#results-page").empty();
+      $("#search-options").empty();
       query = "fitness";
       var queryURL = `https://api.foursquare.com/v2/venues/explore?client_id=${clientIDFoursquare}&client_secret=${clientSecret}&v=20180323&limit=${responsesLimit}&near=${schoolZip}&query=${query}`;
       var locationAddress = [];
@@ -353,7 +384,7 @@ $(document).ready(function () {
    //On-Click function for when event topic card is clicked. Making call to FourSquare API for restaurants in the area.
    $("#foodButton").on("click", function () {
       event.preventDefault();
-      $("#results-page").empty();
+      $("#search-options").empty();
       query = "restaurants";
       var queryURL = `https://api.foursquare.com/v2/venues/explore?client_id=${clientIDFoursquare}&client_secret=${clientSecret}&v=20180323&limit=${responsesLimit}&near=${schoolZip}&query=${query}`;
       var locationAddress = [];
@@ -388,7 +419,7 @@ $(document).ready(function () {
    //On-Click function for when event topic card is clicked. Making call to FourSquare API for restaurants in the area.
    $("#shopButton").on("click", function () {
       event.preventDefault();
-      $("#results-page").empty();
+      $("#search-options").empty();
       query = "shopping";
       var queryURL = `https://api.foursquare.com/v2/venues/explore?client_id=${clientIDFoursquare}&client_secret=${clientSecret}&v=20180323&limit=${responsesLimit}&near=${schoolZip}&query=${query}`;
       var locationAddress = [];
@@ -423,7 +454,7 @@ $(document).ready(function () {
    //On-Click function for when event topic card is clicked. Making call to FourSquare API for restaurants in the area.
    $("#parksButton").on("click", function () {
       event.preventDefault();
-      $("#results-page").empty();
+      $("#search-options").empty();
       query = "parks";
       var queryURL = `https://api.foursquare.com/v2/venues/explore?client_id=${clientIDFoursquare}&client_secret=${clientSecret}&v=20180323&limit=${responsesLimit}&near=${schoolZip}&query=${query}`;
       var locationAddress = [];

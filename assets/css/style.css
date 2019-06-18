@@ -8,6 +8,7 @@ html {
 
 body {
     background: transparent;
+    font-family: 'Roboto', sans-serif;
 }
 
 #nav {
@@ -98,4 +99,12 @@ body {
 .card-body {
     background-color: gray;
     color: white;
+}
+
+#map {
+    height: 200px;
+}
+
+.gm-style-cc, .gm-style>div>a>div>img  {
+    display: none;
 }

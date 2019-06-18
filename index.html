@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap" rel="stylesheet">
   <script src="https://kit.fontawesome.com/1ea31101f4.js"></script>
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
@@ -171,10 +172,23 @@
           <div id="weather" class="toast-body">
           </div>
         </div>
+
+        <!-- Map Toast -->
+        <div class="toast" data-autohide="false" role="alert" aria-live="assertive" aria-atomic="true">
+          <div class="toast-header">
+            <img src="assets/images/map.png" class="rounded mr-2" alt="map icon">
+            <strong class="mr-auto">Location</strong>
+            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div id="map" class="toast-body">
+          </div>
+        </div>
       </div>
     </div>
 
-    <div class="container">
+    <div id="search-options" class="container">
       <div class="row">
         <div class="col">
           <div class="card-deck" id="resultsDiv">
@@ -217,7 +231,10 @@
 
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/loaders.css/0.1.2/loaders.css.js"></script>
+
   <script src="assets/javascript/app.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoBMShUVeDXvFpRHkmVoyvsq8A_5VC4rY&callback=initMap"
+  async defer></script>
 </body>
 
 </html>
