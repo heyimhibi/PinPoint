@@ -1,5 +1,3 @@
-
-
    var firebaseConfig = {
     apiKey: "AIzaSyC6czO70FR-41_kSaHpuGOJ1JpfCC5_iOI",
     authDomain: "pinpoint-6e90c.firebaseapp.com",
@@ -36,8 +34,6 @@
     console.log(newUser.name);
     console.log(newUser.email);
     console.log(newUser.message);
-  
-    alert("Employee successfully added");
   
 
     $("#name-input").val("");
