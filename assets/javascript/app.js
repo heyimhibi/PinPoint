@@ -212,6 +212,7 @@ $(document).ready(function () {
    var query = "restaurant"
    var responsesLimit = 30
    var searchInput = "";
+   var fitnessResults = [];
 
    var schoolZip;
 
@@ -302,9 +303,11 @@ $(document).ready(function () {
 //On-Click function for when event topic card is clicked. Making call to FourSquare API for fitness in the area.
    $("#fitnessButton").on("click", function(){
       event.preventDefault();
+      $("#resultsDiv").empty();
       query = "fitness";
-      schoolZip = "";
+      schoolZip = "37240";
       var queryURL = `https://api.foursquare.com/v2/venues/explore?client_id=${clientIDFoursquare}&client_secret=${clientSecret}&v=20180323&limit=${responsesLimit}&near=${schoolZip}&query=${query}`;
+      var locationAddress = [];
       $.ajax({
          url: queryURL,
          method: 'GET',
@@ -317,9 +320,18 @@ $(document).ready(function () {
             limit: responsesLimit
          }
       }).then(function (response) {
-         console.log(response);
+         for (var i=0;i<response.response.groups[0].items.length;i++){
+            fitnessResults.push(response.response.groups[0].items[i].venue.name);
+            locationAddress.push(response.response.groups[0].items[i].venue.location.formattedAddress[0])
+         }
+         console.log(response.response.groups[0].items);
+         console.log(fitnessResults);
+         console.log(locationAddress);
+         for (var j=0;j<fitnessResults.length;j++){
+            var newCard = $("<div class='row'><div class=card  style='width: 18rem;'><div class='card-body' data-fitness="+j+"><img src='https://www.cbc.ca/parents/content/imgs/kidsatconcerts_lead_emissio.jpg' class='card-img-top' alt='event-image'><h5 class='card-title mt-2'>"+fitnessResults[j]+"</h5><p class='card-text'>"+locationAddress[j]+"</p></div></div></div>")
+            $("#resultsDiv").append(newCard);
+         }
       });
-      $("#results").append() //<--Need card elements to append with results inserted into them
 
    });
 });
