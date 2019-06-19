@@ -8,7 +8,6 @@ html {
 
 body {
     background: transparent;
-    font-family: 'Roboto', sans-serif;
 }
 
 #nav {
@@ -101,10 +100,14 @@ body {
     color: white;
 }
 
-#map {
-    height: 200px;
+
+h2 {
+    margin: 20px;
 }
 
-.gm-style-cc, .gm-style>div>a>div>img  {
-    display: none;
+p {
+    margin: 60px;
 }
+
+
+
