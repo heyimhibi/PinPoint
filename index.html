@@ -20,7 +20,7 @@
 <body>
   <!-- Static Navbar -->
   <nav id="nav" class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">PinPoint</a>
+    <a class="navbar-brand" href="#"><i class="fas fa-map-pin"></i> PinPoint</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -61,7 +61,7 @@
             <select class="custom-select" id="school-selection" aria-label="Choose an institution">
             </select>
             <div class="input-group-append">
-              <button id="search" class="btn btn-dark" type="button">Submit</button>
+              <button id="search" class="btn btn-dark" role="button" type="button" data-container="body" data-toggle="popover" data-placement="right" data-content="Please select an institution.">Submit</button>
             </div>
           </div>
           <div class="ball-pulse-sync animated fadeIn faster">

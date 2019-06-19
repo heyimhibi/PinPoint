@@ -206,6 +206,12 @@ var states = [{
 
 $(document).ready(function () {
 
+   $(function () {
+      $('[data-toggle="popover"]').popover()
+    });
+
+   animateNormCSS(".fa-map-pin", "bounceInDown");
+
    var clientIDFoursquare = "QIQOY4DP1NMCYBBDMXYYQOYI0TQDGUX0WJRR5QUJZYV2NLUD";
    var clientSecret = "P34QO4OTCFM4J5LFMU3MXH4B4GCXDTZ3EGPZCU1QBCCWBZ0Y"
 
@@ -242,54 +248,75 @@ $(document).ready(function () {
       $("#search").on("click", function () {
          event.preventDefault();
 
-         animateCSS("#selection-page", "fadeOut", function () {
-            $("#selection-page").hide();
-            $("#results-page").show();
-            animateCSS("#results-page", "fadeIn");
-         });
-
          // Pulls stored school-id from option HTML element
          searchSchoolId = $("#school-selection option:selected").attr("data-id");
+         console.log(searchSchoolId);
 
-         // WORKING BY COLLEGE
-         $.ajax({
-            url: `https://api.data.gov/ed/collegescorecard/v1/schools?api_key=B8ab3aPW1VmB52ZmHPMpgyftQXVVd1aRiDbYbnxl&id=${searchSchoolId}`,
-            method: "GET"
-         }).then(function (response) {
-            var results = response.results[0];
-            console.log(results);
-            var schoolName = results.school.name;
-            var schoolCost = schoolName + " has an average year cost of $" + results.latest.cost.avg_net_price.overall;
-            var schoolPop = schoolName + " has " + results.latest.student.enrollment.all + " students currently enrolled.";
-            $("#enrollment").text(schoolPop);
-            $("#cost").text(schoolCost);
-            var string = results.school.zip;
-            var zipLength = 5;
-            schoolZip = string.substring(0, zipLength);
-            schoolLat = results.location.lat;
-            schoolLon = results.location.lon;
-
-            initMap(schoolLat, schoolLon, searchInput);
-
-            // OpenWeatherMap Search by School Zip
-            $.ajax({
-               url: `https://api.openweathermap.org/data/2.5/weather?q=${schoolZip}&APPID=9f948945c2a7499da3eb43a912f67a23`,
-               method: "GET",
-               success: function (response) {
-                  console.log(response);
-                  var tempF = (Math.floor((response.main.temp - 273.15) * 1.80 + 32));
-                  $("#weather").text("The current temp at " + schoolName + " is " + tempF + ".")
-               },
-               error: function () {
-                  $("#weather").text("Whoops! 😕 This is not a valid location.");
-               }
+         if (searchSchoolId === undefined) {
+               console.log(searchSchoolId, "run popover");
+               $("#search").popover("show");
+               setTimeout(function () {
+                   $("#search").popover("hide");
+               }, 2000);
+               searchSchoolId = "";
+               console.log(searchSchoolId, "cleared");
+         } else {
+            console.log(searchSchoolId, "no popover");
+            animateCSS("#selection-page", "fadeOut", function () {
+               $("#selection-page").hide();
+               $("#results-page").show();
+               animateCSS("#results-page", "fadeIn");
             });
 
-         });
+            // WORKING BY COLLEGE
+            $.ajax({
+               url: `https://api.data.gov/ed/collegescorecard/v1/schools?api_key=B8ab3aPW1VmB52ZmHPMpgyftQXVVd1aRiDbYbnxl&id=${searchSchoolId}`,
+               method: "GET"
+            }).then(function (response) {
+               var results = response.results[0];
+               console.log(results);
+               var schoolName = results.school.name;
+               var schoolCost = results.latest.cost.avg_net_price.overall;
+               var schoolPop = results.latest.student.enrollment.all;
+               if (schoolPop === null) {
+                  var popMessage = "Whoops! 🤦‍♂️ Something went wrong."
+               } else {
+                  var popMessage = schoolName + " has " + schoolPop + " students currently enrolled.";
+               }
+               if (schoolCost === null) {
+                  var costMessage = "Whoops! 🤦‍♂️ Something went wrong."
+               } else {
+                  var costMessage = schoolName + " has an average year cost of $" + schoolCost;
+               }
+               $("#enrollment").text(popMessage);
+               $("#cost").text(costMessage);
+               var string = results.school.zip;
+               var zipLength = 5;
+               schoolZip = string.substring(0, zipLength);
+               schoolLat = results.location.lat;
+               schoolLon = results.location.lon;
 
-         
+               initMap(schoolLat, schoolLon, searchInput);
 
-         $(".toast").toast("show");
+               // OpenWeatherMap Search by School Zip
+               $.ajax({
+                  url: `https://api.openweathermap.org/data/2.5/weather?q=${schoolZip}&APPID=9f948945c2a7499da3eb43a912f67a23`,
+                  method: "GET",
+                  success: function (response) {
+                     console.log(response);
+                     var tempF = (Math.floor((response.main.temp - 273.15) * 1.80 + 32));
+                     $("#weather").text("The current temp at " + schoolName + " is " + tempF + ".")
+                  },
+                  error: function () {
+                     $("#weather").text("Whoops! 😕 This is not a valid location.");
+                  }
+               });
+
+            });
+
+            $(".toast").toast("show");
+
+         };
 
       });
 
@@ -498,6 +525,20 @@ $(document).ready(function () {
 function animateCSS(element, animationName, callback) {
    const node = document.querySelector(element);
    node.classList.add('animated', animationName, "faster");
+
+   function handleAnimationEnd() {
+      node.classList.remove('animated', animationName);
+      node.removeEventListener('animationend', handleAnimationEnd);
+
+      if (typeof callback === 'function') callback()
+   }
+
+   node.addEventListener('animationend', handleAnimationEnd);
+};
+
+function animateNormCSS(element, animationName, callback) {
+   const node = document.querySelector(element);
+   node.classList.add('animated', animationName);
 
    function handleAnimationEnd() {
       node.classList.remove('animated', animationName);

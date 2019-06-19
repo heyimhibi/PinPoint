@@ -8,6 +8,7 @@ html {
 
 body {
     background: transparent;
+    font-family: 'Roboto', sans-serif;
 }
 
 #nav {
@@ -92,52 +93,28 @@ body {
 }
 
 .card {
-    background-color: transparent;
-}
-
-.card-body {
     background-color: gray;
     color: white;
 }
 
-
-h2 {
-    margin: 20px;
+#about {
+    padding-top: 5rem;
 }
 
-p {
-    margin: 60px;
+p.card-text {
+    height: 100%;
 }
 
-.card-group {
-    position: relative;
-    margin: 100px;
-    height: 300px;
-    padding: 40px;
-    bottom: 100px;
+.github {
+    margin: 0rem 1rem 1rem 0rem;
 }
 
-.card-text {
-    margin: 20px;
-    bottom: 100;
+#map {
+    height: 200px;
 }
 
-.card-footer {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    text-align: right;
-}
-
-.footer {
-    position: relative;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    height: 50px;;
-    color: black;
-    text-align: center; 
+.gm-style-cc, .gm-style>div>a>div>img  {
+    display: none;
 }
 
 
