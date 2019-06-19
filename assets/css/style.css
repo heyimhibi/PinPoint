@@ -39,7 +39,9 @@ body {
     object-fit: cover;
 }
 
-.carousel-caption, .card-body {
+
+
+.carousel-caption, .card-body  {
     color: white;
     background: rgba(0, 0, 0, 0.6);
     border-radius: 5px;
@@ -85,11 +87,6 @@ body {
 
 .card {
     background-color: transparent;
-}
-
-.card-body {
-    background-color: gray;
-    color: white;
 }
 
 
