@@ -16,13 +16,7 @@ body {
     top: 0;
 }
 
-#background-pin {
-    position: fixed;
-    float: left;
-    z-index: -100;
-    bottom: 0;
-    opacity: 0.5;
-}
+
 
 .input-selectors {
     position: absolute;
@@ -45,7 +39,7 @@ body {
     object-fit: cover;
 }
 
-.carousel-caption {
+.carousel-caption, .card-body {
     color: white;
     background: rgba(0, 0, 0, 0.6);
     border-radius: 5px;
