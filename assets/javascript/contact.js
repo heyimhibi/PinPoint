@@ -49,10 +49,12 @@
     console.log(childSnapshot.val());
   });
  
-  function BothFieldsIdenticalCaseSensitive(email1, email2) {
+  function EmailFields() {
     var two = document.getElementById(email-input1).value;
     var three = document.getElementById(email-input2).value;
     if(two == three) { return true; }
     alert("Warning!! passcodes must match!!!");
     return false;
 };
+
+two.EmailFields();
