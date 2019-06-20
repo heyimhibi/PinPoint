@@ -53,35 +53,62 @@
                 
                </head>
                
-               <body>
+              
+               <script type="text/javascript">
+               function BothFieldsIdenticalCaseSensitive(email1, email2) {
+                    var two = document.getElementById(email-input1).value;
+                    var three = document.getElementById(email-input2).value;
+                    if(two == three) { return true; }
+                    alert("Warning!! passcodes must match!!!");
+                    return false;
+                    };
+
+               
+               
+               </script>
                
 
                  <div class="container">
                   <br>
                   <p2>Contact Us</p2>
                   <br>
-                           <form>
-                             <div class="form-group">
-                               <label for="name-input">Name</label>
-                               <input class="form-control" id="name-input" placeholder="Jane Doe" type="text">
-                             </div>
-                             <div class="form-group">
-                               <label for="email-input">Email</label>
-                               <input class="form-control" id="email-input" placeholder="joe.doe@email.com" type="text">
-                             </div>
-                             <div class="form-group">
-                               <label for="message-input">Message</label>
-                               <input class="form-control" id="message-input" placeholder="Your message here" type="text">
-                             </div>
-                             <button class="btn btn-secondary" id="add-contact-btn">Submit</button>
-                           </form>
-               
-                         </div>
-                       </div>
+                  <br>
+                    <form>
+                      <div class="form-group">
+                       <label for="name-input">Name</label>
+                       <input class="form-control" id="name-input" placeholder="Jane Doe" type="text">
+                      </div>
+                      <div class="form-group">
+                       <label for="email-input1">Email address</label>
+                       <input type="email" class="form-control" id="email-input1" aria-describedby="emailHelp" placeholder="Enter email">
+                       <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                      </div>
-                   </div>
+                     <div class="form-group">
+                        <label for="email-input2">Re-Enter Email address</label>
+                        <input type="email" class="form-control" id="email-input2" aria-describedby="emailHelp" placeholder="Enter email">
+                      </div>
+                     <div class="form-group">
+                       <label for="message-input">Message</label>
+                       <input class="form-control" id="message-input" placeholder="Your message here" type="text">
+                     </div>
+                      <button class="btn btn-secondary" id="add-contact-btn">Submit</button>
+                    </form>
+                    
+                  </div>
+                 
+                
 
-                 <script src="assets/javascript/contact.js"></script>
+
+
+
+                     
+
+                     
+
+
+
+
+
 
                 <div class="card-group">
                   <div class="card">
@@ -132,9 +159,11 @@
                   </div>
                 </div>
                 <div class="footer btn-lg">
-                  <p>Footer</p>
+                  <p>&copy 2019 GameOfCodes, Cooperative</p>
                  </div>
                
-                
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="assets/javascript/contact.js"></script>
+        
 </body>
 </html>
