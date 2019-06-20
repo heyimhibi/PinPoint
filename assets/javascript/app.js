@@ -258,9 +258,8 @@ $(document).ready(function () {
                setTimeout(function () {
                    $("#search").popover("hide");
                }, 2000);
-               searchSchoolId = "";
-               console.log(searchSchoolId, "cleared");
          } else {
+            $("#search").popover("hide");
             console.log(searchSchoolId, "no popover");
             animateCSS("#selection-page", "fadeOut", function () {
                $("#selection-page").hide();
@@ -274,7 +273,6 @@ $(document).ready(function () {
                method: "GET"
             }).then(function (response) {
                var results = response.results[0];
-               console.log(results);
                var schoolName = results.school.name;
                var schoolCost = results.latest.cost.avg_net_price.overall;
                var schoolPop = results.latest.student.enrollment.all;
@@ -303,7 +301,6 @@ $(document).ready(function () {
                   url: `https://api.openweathermap.org/data/2.5/weather?q=${schoolZip}&APPID=9f948945c2a7499da3eb43a912f67a23`,
                   method: "GET",
                   success: function (response) {
-                     console.log(response);
                      var tempF = (Math.floor((response.main.temp - 273.15) * 1.80 + 32));
                      $("#weather").text("The current temp at " + schoolName + " is " + tempF + ".")
                   },

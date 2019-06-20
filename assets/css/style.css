@@ -1,12 +1,8 @@
-html {
-    
+body {
     background-image: url("https://cdn-images-1.medium.com/max/2600/1*7243efiQ5XEy672hwU2V6g.jpeg");
     height: 100vh;
     background-attachment: fixed;
-}
-
-body {
-    background: transparent;
+    background-size: cover;
     font-family: 'Roboto', sans-serif;
 }
 
@@ -16,8 +12,6 @@ body {
     width: 100%;
     top: 0;
 }
-
-
 
 .input-selectors {
     position: absolute;
@@ -39,8 +33,6 @@ body {
     height: 100vh;
     object-fit: cover;
 }
-
-
 
 .carousel-caption, .card-body  {
     color: white;
@@ -93,10 +85,6 @@ body {
 
 #about {
     padding-top: 5rem;
-}
-
-p.card-text {
-    height: 100%;
 }
 
 .github {
