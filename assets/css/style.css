@@ -85,7 +85,7 @@ body {
     margin-top: 5rem;
 }
 
-.card {
+/* .card {
     background-color: transparent;
 }
 
@@ -121,14 +121,9 @@ p {
     text-align: right;
 }
 
-.footer {
-    position: relative;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    height: 50px;;
-    color: black;
-    text-align: center; 
+
+.card-text {
+    margin: 20px;
+    bottom: 100;
 }
-
-
+ */
