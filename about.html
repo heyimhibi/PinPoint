@@ -1,151 +1,149 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title> PinPoint </title>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-        <link rel="stylesheet" href="assets/css/style2.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-      
-        <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-app.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-database.js"></script>
-        <script src="https://kit.fontawesome.com/1ea31101f4.js"></script>
-       
-      </head>
-      <body>
 
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand" href="#">PinPoint</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                  <span class="navbar-toggler-icon"></span>
-                </button>
-                
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                  <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                      <a class="nav-link" href="index.html"> Home </a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="about.html"> About  </a>
-                    </li>
-                  </ul>
-                  <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn btn-secondary " type="submit">Search</button>
-                  </form>
-                </div>
-              </nav>
-              
-              <br>
-              <div class= "paragraph">
-              <h2>PinPoint what area works for you.</h2>
-               <br>
-               You have done your research and narrowed your search to the best universities and colleges for you future goals but have you considered the city you are moving to?  PinPoint is built to give those who plan to move to a new city the ability to find what amenities are available for you.  All in one place. See area restaurants and events to help you decide where to work AND play.
-              <br>
-              <br>
-               PinPoint is designed for students or those in academic careers by a collective of students call Game of Codes.  Our goal is to make moving to a new school much simpler and with all the resources for fun all in one place.
-              </div>
-                
-                 <div class="container">
-                  <p2>Contact Us</p2>
-                  <br>
-                  <br>
-                    <form id = "theForm">
-                      <div class="form-group">
-                       <label for="name-input">Name</label>
-                       <input class="form-control" id="name-input" placeholder="Your Name" type="text">
-                      </div>
-                      <div class="form-group">
-                       <label for="email-input1">Email address</label>
-                       <input type="email" class="form-control" id="email-input1" aria-describedby="emailHelp" placeholder="Enter email">
-                       <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-                     </div>
-                     <div class="form-group">
-                        <label for="email-input2">Re-Enter Email address</label>
-                        <input type="email" class="form-control" id="email-input2" aria-describedby="emailHelp" placeholder="Enter email">
-                      </div>
-                     <div class="form-group">
-                       <label for="message-input">Message</label>
-                       <input class="form-control" id="message-input" placeholder="Your message here" type="text">
-                     </div>
-                      <button class="btn btn-secondary" id="add-contact-btn">Submit</button>
-                    </form>
-                    
-                  </div>
-                 
-                
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title> PinPoint </title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-database.js"></script>
+  <script src="https://kit.fontawesome.com/1ea31101f4.js"></script>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
 
+<body>
 
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">PinPoint</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="index.html"> Home </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="about.html"> About </a>
+        </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn btn-secondary " type="submit">Search</button>
+      </form>
+    </div>
+  </nav>
 
-                     
+  <br>
+  <div class="container">
+    <div class="aboutPageHeader">PinPoint what area works for you.</div>
+    <br>
+    You have done your research and narrowed your search to the best universities and colleges for you future goals but
+    have you considered the city you are moving to? PinPoint is built to give those who plan to move to a new city the
+    ability to find what amenities are available for you. All in one place. See area restaurants and events to help you
+    decide where to work AND play.
+    <br>
+    <br>
+    PinPoint was designed by a collective of students called Game of Codes. Our
+    goal is to make moving to a new school much simpler and with all the resources for fun all in one place. PinPoint is designed for anyone looking to get a better idea of the city life around an area.
+  </div>
 
-                     
+  <div class="container">
 
+    <form id="inputForm">
+      <p2>Contact Us</p2>
+      <div class="form-group">
+        <label for="name-input">Name</label>
+        <input class="form-control" id="name-input" placeholder="Your Name" type="text">
+      </div>
+      <div class="form-group">
+        <label for="email-input1">Email address</label>
+        <input type="email" class="form-control" id="email-input1" aria-describedby="emailHelp"
+          placeholder="Enter email">
+      </div>
+      <div class="form-group">
+        <label for="email-input2">Re-Enter Email address</label>
+        <input type="email" class="form-control" id="email-input2" aria-describedby="emailHelp"
+          placeholder="Enter email">
+      </div>
+      <div class="form-group">
+        <label for="message-input">Message</label>
+        <input class="form-control" id="message-input" placeholder="Your message here" type="text">
+      </div>
+      <button class="btn btn-dark" id="add-contact-btn">Submit</button>
+    </form>
 
+  </div>
+<!-- ======================================================================================================================= -->
 
+<!-- Group Member Cards -->
+
+<!-- ======================================================================================================================= -->
 
 
 
-                <div class="card-group">
-                  <div class="card">
-                    <img src="https://avatars2.githubusercontent.com/u/49534475?s=400&v=4" class="card-img-top" alt="...">
-                    <div class="card-body">
-                      <h5 class="card-title">Patricia Correia</h5>
-                      <p class="card-text">Crochet Master</p>
-                      <div class="card-footer">
-                        <small class="text-muted"></small>
-                        <a href="https://github.com/heyimhibi" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true"><i class="fab fa-github"></i></a>
+<div class="container"> 
+  <div class="card-group">
+    <div class="card">
+      <img src="https://avatars2.githubusercontent.com/u/49534475?s=400&v=4" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Patricia Correia</h5>
+        <p class="card-text">Scientist gone rogue, Crochet Master</p>
+        <div class="card-footer">
+          <a href="https://github.com/heyimhibi" class="btn btn-secondary btn-lg active" role="button"
+            aria-pressed="true"><i class="fab fa-github"></i></a>
 
-                      </div>
+        </div>
 
-                    </div>
-                  </div>
-                  <div class="card">
-                    <img src="https://avatars1.githubusercontent.com/u/25600473?s=400&v=4" class="card-img-top" alt="...">
-                    <div class="card-body">
-                      <h5 class="card-title">Terrance Mahnken</h5>
-                      <p class="card-text">Enjoys loudly humming ambient electro while strolling on the beach</p>
-                      <div class="card-footer">
-                        <small class="text-muted"></small>
-                      <a href="https://github.com/TerrenceMM2" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true"><i class="fab fa-github"></i></a>
-                   </div>
-                    </div>
-                  </div>
-                  <div class="card">
-                    <img src="https://avatars3.githubusercontent.com/u/49459028?s=400&v=4" class="card-img-top" alt="...">
-                    <div class="card-body">
-                      <h5 class="card-title">Gavin Atkins</h5>
-                      <p class="card-text">Plat 2 on Seige</p>
-                      <div class="card-footer">
-                        <small class="text-muted"></small>
-                      <a href="https://github.com/GBAkins" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true"><i class="fab fa-github"></i></a>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="card">
-                    <img src="https://avatars2.githubusercontent.com/u/49626534?s=460&v=4" class="card-img-top" alt="...">
-                    <div class="card-body">
-                      <h5 class="card-title">Wendy Miller</h5>
-                      <p class="card-text">Female</p>
-                      <div class="card-footer">
-                        <small class="text-muted"></small>
-                      <a href="https://github.com/wendmiller" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true"><i class="fab fa-github"></i></a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="footer btn-lg">
-                  <p>&copy 2019 GameOfCodes, Cooperative</p>
-                 </div>
-               
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://avatars1.githubusercontent.com/u/25600473?s=400&v=4" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Terrance Mahnken</h5>
+        <p class="card-text">Enjoys loudly humming ambient electro while strolling on the beach</p>
+        <div class="card-footer">
+          <a href="https://github.com/TerrenceMM2" class="btn btn-secondary btn-lg active" role="button"
+            aria-pressed="true"><i class="fab fa-github"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://avatars3.githubusercontent.com/u/49459028?s=400&v=4" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Gavin Atkins</h5>
+        <p class="card-text">Plat 2 on Siege</p>
+        <div class="card-footer">
+          <a href="https://github.com/GBAkins" class="btn btn-secondary btn-lg active" role="button"
+            aria-pressed="true"><i class="fab fa-github"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://avatars2.githubusercontent.com/u/49626534?s=460&v=4" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Wendy Miller</h5>
+        <p class="card-text"> (Fe)male -aka IronMan</p>
+        <div class="card-footer">
+          <a href="https://github.com/wendmiller" class="btn btn-secondary btn-lg active" role="button"
+            aria-pressed="true"><i class="fab fa-github"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
   <script src="assets/javascript/contact.js"></script>
-        
+
 </body>
+
 </html>
