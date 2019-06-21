@@ -24,7 +24,12 @@ body {
 .paragraph {
     margin: 40px;
     width: 80%;
-    background: whitesmoke;
+    background-color: #ffffff;
+    opacity: 0.6;
+    filter: alpha(opacity=60);
+    margin: 5%;
+    font-weight: bold;
+    color: #000000;
 
 }
 
