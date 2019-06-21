@@ -353,6 +353,7 @@ $(document).ready(function () {
       query = "fitness";
       var queryURL = `https://api.foursquare.com/v2/venues/explore?client_id=${clientIDFoursquare}&client_secret=${clientSecret}&v=20180323&limit=${responsesLimit}&near=${schoolZip}&query=${query}`;
       var locationAddress = [];
+      var locationCity = [];
       $.ajax({
          url: queryURL,
          method: 'GET',
@@ -368,13 +369,15 @@ $(document).ready(function () {
          for (var i = 0; i < response.response.groups[0].items.length; i++) {
             fitnessResults.push(response.response.groups[0].items[i].venue.name);
             locationAddress.push(response.response.groups[0].items[i].venue.location.formattedAddress[0])
+            locationCity.push(response.response.groups[0].items[i].venue.location.formattedAddress[1]);
          }
          console.log(response.response.groups[0].items);
          console.log(fitnessResults);
          console.log(locationAddress);
+         console.log(locationCity);
          for (var j = 0; j < fitnessResults.length; j++) {
             var newCardDeck = $("<div id='search-options' class='container'><div class='row'><div class='col'><div class='card-deck' id='result-card-deck'></div></div></div></div>'")
-            var newCard = $("<div class='row'><div class=card  style='width: 18rem;'><div class='card-body' data-fitness=" + j + "><img src='http://assets.dmagstatic.com/wp-content/uploads/2019/01/iStock-871070868-677x451.jpg' class='card-img-top' alt='event-image'><h5 class='card-title mt-2'>" + fitnessResults[j] + "</h5><p class='card-text'>" + locationAddress[j] + "</p></div></div></div>")
+            var newCard = $("<div class='row'><div class=card  style='width: 18rem;'><div class='card-body' data-fitness=" + j + "><img src='http://assets.dmagstatic.com/wp-content/uploads/2019/01/iStock-871070868-677x451.jpg' class='card-img-top' alt='event-image'><h5 class='card-title mt-2'>" + fitnessResults[j] + "</h5><p class='card-text'>" + locationAddress[j] + "</p><p class='card-text'>" + locationCity[j] + "</p></div></div></div>")
             $("#results-page").append(newCardDeck);
             $("#result-card-deck").append(newCard);
          }
@@ -390,6 +393,7 @@ $(document).ready(function () {
       query = "restaurants";
       var queryURL = `https://api.foursquare.com/v2/venues/explore?client_id=${clientIDFoursquare}&client_secret=${clientSecret}&v=20180323&limit=${responsesLimit}&near=${schoolZip}&query=${query}`;
       var locationAddress = [];
+      var locationCity = [];
       $.ajax({
          url: queryURL,
          method: 'GET',
@@ -404,14 +408,16 @@ $(document).ready(function () {
       }).then(function (response) {
          for (var i = 0; i < response.response.groups[0].items.length; i++) {
             foodResults.push(response.response.groups[0].items[i].venue.name);
-            locationAddress.push(response.response.groups[0].items[i].venue.location.formattedAddress[0])
+            locationAddress.push(response.response.groups[0].items[i].venue.location.formattedAddress[0]);
+            locationCity.push(response.response.groups[0].items[i].venue.location.formattedAddress[1]);
          }
          console.log(response.response.groups[0].items);
          console.log(foodResults);
          console.log(locationAddress);
+         console.log(locationCity);
          for (var j = 0; j < foodResults.length; j++) {
             var newCardDeck = $("<div id='search-options' class='container'><div class='row'><div class='col'><div class='card-deck' id='result-card-deck'></div></div></div></div>'")
-            var newCard = $("<div class='row'><div class=card  style='width: 18rem;'><div class='card-body' data-food=" + j + "><img src='http://www.studentbrands.co.za/wp-content/uploads/2016/05/2D_SpitBill.jpg' class='card-img-top' alt='event-image'><h5 class='card-title mt-2'>" + foodResults[j] + "</h5><p class='card-text'>" + locationAddress[j] + "</p></div></div></div>")
+            var newCard = $("<div class='row'><div class=card  style='width: 18rem;'><div class='card-body' data-food=" + j + "><img src='http://www.studentbrands.co.za/wp-content/uploads/2016/05/2D_SpitBill.jpg' class='card-img-top' alt='event-image'><h5 class='card-title mt-2'>" + foodResults[j] + "</h5><p class='card-text'>" + locationAddress[j] + "</p><p class='card-text'>" + locationCity[j] + "</p></div></div></div>")
             $("#results-page").append(newCardDeck);
             $("#result-card-deck").append(newCard);
          }
@@ -427,6 +433,7 @@ $(document).ready(function () {
       query = "shopping";
       var queryURL = `https://api.foursquare.com/v2/venues/explore?client_id=${clientIDFoursquare}&client_secret=${clientSecret}&v=20180323&limit=${responsesLimit}&near=${schoolZip}&query=${query}`;
       var locationAddress = [];
+      var locationCity = [];
       $.ajax({
          url: queryURL,
          method: 'GET',
@@ -441,14 +448,16 @@ $(document).ready(function () {
       }).then(function (response) {
          for (var i = 0; i < response.response.groups[0].items.length; i++) {
             shopResults.push(response.response.groups[0].items[i].venue.name);
-            locationAddress.push(response.response.groups[0].items[i].venue.location.formattedAddress[0])
+            locationAddress.push(response.response.groups[0].items[i].venue.location.formattedAddress[0]);
+            locationCity.push(response.response.groups[0].items[i].venue.location.formattedAddress[1]);
          }
          console.log(response.response.groups[0].items);
          console.log(shopResults);
          console.log(locationAddress);
+         console.log(locationCity);
          for (var j = 0; j < shopResults.length; j++) {
             var newCardDeck = $("<div id='search-options' class='container'><div class='row'><div class='col'><div class='card-deck' id='result-card-deck'></div></div></div></div>'")
-            var newCard = $("<div class='row'><div class=card  style='width: 18rem;'><div class='card-body' data-shop=" + j + "><img src='http://www.cbc.ca/parents/content/imgs/kidsatconcerts_lead_emissio.jpg' class='card-img-top' alt='event-image'><h5 class='card-title mt-2'>" + shopResults[j] + "</h5><p class='card-text'>" + locationAddress[j] + "</p></div></div></div>")
+            var newCard = $("<div class='row'><div class=card  style='width: 18rem;'><div class='card-body' data-shop=" + j + "><img src='http://www.cbc.ca/parents/content/imgs/kidsatconcerts_lead_emissio.jpg' class='card-img-top' alt='event-image'><h5 class='card-title mt-2'>" + shopResults[j] + "</h5><p class='card-text'>" + locationAddress[j] + "</p><p class='card-text'>" + locationCity[j] + "</p></div></div></div>")
             $("#results-page").append(newCardDeck);
             $("#result-card-deck").append(newCard);
          }
@@ -464,6 +473,7 @@ $(document).ready(function () {
       query = "parks";
       var queryURL = `https://api.foursquare.com/v2/venues/explore?client_id=${clientIDFoursquare}&client_secret=${clientSecret}&v=20180323&limit=${responsesLimit}&near=${schoolZip}&query=${query}`;
       var locationAddress = [];
+      var locationCity = [];
       $.ajax({
          url: queryURL,
          method: 'GET',
@@ -478,14 +488,16 @@ $(document).ready(function () {
       }).then(function (response) {
          for (var i = 0; i < response.response.groups[0].items.length; i++) {
             parkResults.push(response.response.groups[0].items[i].venue.name);
-            locationAddress.push(response.response.groups[0].items[i].venue.location.formattedAddress[0])
+            locationAddress.push(response.response.groups[0].items[i].venue.location.formattedAddress[0]);
+            locationCity.push(response.response.groups[0].items[i].venue.location.formattedAddress[1]);
          }
          console.log(response.response.groups[0].items);
          console.log(parkResults);
          console.log(locationAddress);
+         console.log(locationCity);
          for (var j = 0; j < parkResults.length; j++) {
             var newCardDeck = $("<div id='search-options' class='container'><div class='row'><div class='col'><div class='card-deck' id='result-card-deck'></div></div></div></div>'")
-            var newCard = $("<div class='row'><div class=card  style='width: 18rem;'><div class='card-body' data-park=" + j + "><img src='http://www.studentbrands.co.za/wp-content/uploads/2016/05/2D_SpitBill.jpg' class='card-img-top' alt='event-image'><h5 class='card-title mt-2'>" + parkResults[j] + "</h5><p class='card-text'>" + locationAddress[j] + "</p></div></div></div>")
+            var newCard = $("<div class='row'><div class=card  style='width: 18rem;'><div class='card-body' data-park=" + j + "><img src='http://www.studentbrands.co.za/wp-content/uploads/2016/05/2D_SpitBill.jpg' class='card-img-top' alt='event-image'><h5 class='card-title mt-2'>" + parkResults[j] + "</h5><p class='card-text'>" + locationAddress[j] + "</p><p class='card-text'>" + locationCity[j] + "</p></div></div></div>")
             $("#results-page").append(newCardDeck);
             $("#result-card-deck").append(newCard);
          }
