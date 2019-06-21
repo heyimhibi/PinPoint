@@ -34,10 +34,13 @@ body {
     object-fit: cover;
 }
 
-.carousel-caption, .card-body  {
+.carousel-caption, .card-body, .container, .inputForm, .card {
     color: white;
     background: rgba(0, 0, 0, 0.6);
     border-radius: 5px;
+    margin-top: 6px;
+    margin-bottom: 8px;
+    padding: 10px;
 }
 
 .carouselControls {
@@ -78,10 +81,11 @@ body {
     margin-top: 5rem;
 }
 
-.card {
-    background-color: transparent;
+.aboutPageHeader {
+    font-size: x-large;
+    color: aliceblue;
+    font-weight: bolder;
 }
-
 
 h2 {
     margin: 20px;
