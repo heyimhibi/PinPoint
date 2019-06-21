@@ -20,7 +20,7 @@
 <body>
   <!-- Static Navbar -->
   <nav id="nav" class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">PinPoint</a>
+    <a class="navbar-brand" href="#"><i class="fas fa-map-pin"></i> PinPoint</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -61,7 +61,9 @@
             <select class="custom-select" id="school-selection" aria-label="Choose an institution">
             </select>
             <div class="input-group-append">
-              <button id="search" class="btn btn-dark" type="button">Submit</button>
+              <button id="search" class="btn btn-dark" role="button" type="button" data-container="body"
+                data-toggle="popover" data-placement="right"
+                data-content="Please select an institution.">Submit</button>
             </div>
           </div>
           <div class="ball-pulse-sync animated fadeIn faster">
@@ -193,10 +195,12 @@
         <div class="col">
 
           <div class="card-deck" id="resultsDiv">
+
             <div class="card" style="width: 18rem;">
               <div class="card-body">
-                <img src="https://www.thenational.ae/image/policy:1.719801:1523202284/lf09-APR-fitness.jpg?f=16x9&w=1200&$p$f$w=5dce02a" class="card-img-top"
-                  alt="event-image">
+                <img
+                  src="https://www.thenational.ae/image/policy:1.719801:1523202284/lf09-APR-fitness.jpg?f=16x9&w=1200&$p$f$w=5dce02a"
+                  class="card-img-top" alt="event-image">
                 <h5 class="card-title mt-2"> Fitness</h5>
                 <p class="card-text"> Click here to search for fitness spots near this college</p>
                 <a href="#" class="btn btn btn-light" id="fitnessButton"> Search </a>
@@ -213,12 +217,13 @@
                 <a href="#" class="btn btn btn-light" id="foodButton"> Search </a>
               </div>
             </div>
+
           </div>
 
         </div>
       </div>
     </div>
-    
+
   </div>
 
 
@@ -235,7 +240,7 @@
 
   <script src="assets/javascript/app.js"></script>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoBMShUVeDXvFpRHkmVoyvsq8A_5VC4rY&callback=initMap"
-  async defer></script>
+    async defer></script>
 </body>
 
 </html>
