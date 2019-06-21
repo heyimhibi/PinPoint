@@ -15,22 +15,27 @@ var database = firebase.database();
 $("#add-contact-btn").on("click", function (event) {
   event.preventDefault();
 
-
   var userName = $("#name-input").val().trim();
   var userEmail = $("#email-input").val().trim();
   var userMessage = $("#message-input").val().trim();
 
-
-  var newUser = {
-    name: userName,
-    email: userEmail,
-    message: userMessage
+  if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(userEmail)) {
+    console.log("this is a valid email");
+    var newUser = {
+      name: userName,
+      email: userEmail,
+      message: userMessage
+    };
+  
+    database.ref().push(newUser);
+  
+    $("#name-input").val("");
+    $("#email-input").val("");
+    $("#message-input").val("");
+  } else {
+    $("#email-input").popover("show");
+    setTimeout(function () {
+      $("#email-input").popover("hide");
+  }, 2000);
   };
-
-
-  database.ref().push(newUser);
-
-  $("#name-input").val("");
-  $("#email-input").val("");
-  $("#message-input").val("");
 });

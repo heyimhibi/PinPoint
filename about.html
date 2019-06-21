@@ -42,29 +42,36 @@
   </nav>
 
   <main id="about" class="container">
-    <h1>PinPoint what area works for you.</h1>
-    <p>You have done your research and narrowed your search to the best universities and colleges for you future goals but have you considered the city you are moving to? PinPoint was built to give those who plan to move to a new city the ability to find what amenities are available for you - all in one place. See area restaurants and events to help you decide where to work and play.
-    <br />
-    <br />
-    PinPoint was designed for students or those in academic careers by a collective of students call Game of Codes. Our goal is to make moving to a new school much simpler.
+    <h2>PinPoint what area works for you.</h2>
+    <br>
+    You have done your research and narrowed your search to the best universities and colleges for you future goals but
+    have you considered the city you are moving to? PinPoint is built to give those who plan to move to a new city the
+    ability to find what amenities are available for you. All in one place. See area restaurants and events to help you
+    decide where to work AND play.
+    <br>
+    <br>
+    PinPoint is designed for students or those in academic careers by a collective of students call Game of Codes. Our
+    goal is to make moving to a new school much simpler and with all the resources for fun all in one place.
     </p>
 
-      <h2>Contact Us</h2>
-      <form onsubmit="return false">
-        <div class="form-group">
-          <label for="name-input">Name</label>
-          <input class="form-control" id="name-input" placeholder="Jane Doe" type="text" required>
-        </div>
-        <div class="form-group">
-          <label for="email-input">Email</label>
-          <input class="form-control" id="email-input" placeholder="joe.doe@email.com" type="email" required>
-        </div>
-        <div class="form-group">
-          <label for="message-input">Message</label>
-          <input class="form-control" id="message-input" placeholder="Your message here" type="text" required>
-        </div>
-        <button class="btn btn-secondary" id="add-contact-btn">Submit</button>
-      </form>
+    <h2>Contact Us</h2>
+    <form>
+      <div class="form-group">
+        <label for="name-input">Name</label>
+        <input class="form-control" id="name-input" placeholder="Jane Doe" type="text">
+      </div>
+      <div class="form-group">
+        <label for="email-input">Email</label>
+        <input class="form-control" id="email-input" placeholder="joe.doe@email.com" type="email" data-container="body"
+        data-toggle="popover" data-trigger="manual" data-placement="bottom"
+        data-content="Please enter a valid email address.">
+      </div>
+      <div class="form-group">
+        <label for="message-input">Message</label>
+        <input class="form-control" id="message-input" placeholder="Your message here" type="text">
+      </div>
+      <button type="submit" class="btn btn-secondary" id="add-contact-btn">Submit</button>
+    </form>
 
     <div class="card-group">
       <!-- Patricia's Card -->
@@ -83,9 +90,9 @@
         <div class="card-body">
           <h5 class="card-title">Terrence Mahnken</h5>
           <p class="card-text">Enjoys loudly humming ambient electro while strolling on the beach
-          <a href="https://github.com/TerrenceMM2" class="github btn btn-secondary btn-lg float-right" role="button"
+            <a href="https://github.com/TerrenceMM2" class="github btn btn-secondary btn-lg float-right" role="button"
               aria-pressed="true"><i class="fab fa-github"></i></a>
-              </p>
+          </p>
         </div>
       </div>
       <!-- Gavin's Card -->
@@ -110,6 +117,10 @@
       </div>
     </div>
   </main>
+
+  <div class="footer btn-lg">
+    <p>&copy 2019 GameOfCodes, Cooperative</p>
+  </div>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
