@@ -102,3 +102,11 @@ body {
 .gm-style-cc, .gm-style>div>a>div>img  {
     display: none;
 }
+
+.card-deck {
+    justify-content: space-evenly;
+ }
+ 
+ .card-deck > .row {
+    margin-bottom: 2rem;
+ }
