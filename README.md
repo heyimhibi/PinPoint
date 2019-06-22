@@ -34,6 +34,18 @@ PinPoint uses:
  * [Terrence Mahnken]
  * [Gavin Akins]
  * [Wendy Miller]
+ 
+ # Further Development
+ Features we want to add in the future.
+ 
+  * Academic Standings
+  * Compare Schools
+  * Ranking System
+  * Fun Facts/Folklore
+  * User Favorites/User Accounts
+  * Safety
+  * College Snapshot Display
+
 
 
   [Bootstrap]: <https://getbootstrap.com/>
