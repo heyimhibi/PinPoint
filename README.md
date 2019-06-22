@@ -3,14 +3,14 @@ Project 1 for Vanderbilt Coding Bootcamp class, this app aims to help users find
 
 # Features
 
-  * First, select state on first drop down
-  * The second drop down automatically populates colleges and universities based on the state selections.
+  * Select state from populated drop down
+  * The second drop down automatically populates colleges and universities based on the state selection.
   * On the search result page, the user can select fitness or restaurants
   * Once the option is selected, related businesses will populate, giving the user options based on the location of the college or university.
 
 
 # Tech
-PinPoint uses 
+PinPoint uses:
 
 * [Bootstrap]
 * [jQuery]
@@ -22,8 +22,12 @@ PinPoint uses
   * [OpenWeatherMap]
   * [Foursquare]
 
+# Contributors
 
-
+ * [Patricia Correia]
+ * [Terrence Mahnken]
+ * [Gavin Akins]
+ * [Wendy Miller]
 
 
   [Bootstrap]: <https://getbootstrap.com/>
@@ -32,4 +36,9 @@ PinPoint uses
   [Data.gov]: <https://www.data.gov/developers/apis>
   [OpenWeatherMap]: <https://openweathermap.org/api>
   [Foursquare]: <https://developer.foursquare.com/>
+  [Patricia Correia]: <https://github.com/heyimhibi>
+  [Terrence Mahnken]: <https://github.com/TerrenceMM2>
+  [Gavin Akins]: <https://github.com/GBAkins>
+  [Wendy Miller]: <https://github.com/wendmiller>
+  
   
