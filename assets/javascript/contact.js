@@ -19,8 +19,9 @@ $("#add-contact-btn").on("click", function (event) {
   var userEmail = $("#email-input").val().trim();
   var userMessage = $("#message-input").val().trim();
 
+  // Checks the email input to ensure a valid email format has been inputted.
+  // If so, the newUser object is created and pushed to Firebase and the form reset.
   if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(userEmail)) {
-    console.log("this is a valid email");
     var newUser = {
       name: userName,
       email: userEmail,
@@ -32,6 +33,7 @@ $("#add-contact-btn").on("click", function (event) {
     $("#name-input").val("");
     $("#email-input").val("");
     $("#message-input").val("");
+  // If not, a popover is shown.
   } else {
     $("#email-input").popover("show");
     setTimeout(function () {

@@ -15,6 +15,17 @@ body {
     position: fixed;
     width: 100%;
     top: 0;
+    font-family: 'Dosis', sans-serif;
+}
+
+.navbar-brand {
+    font-size: 1.75rem;
+    padding: 0;
+}
+
+.nav-item {
+    font-size: 1.25rem;
+    padding: 0;
 }
 
 .input-selectors {
@@ -38,13 +49,30 @@ body {
     object-fit: cover;
 }
 
-.carousel-caption, .card-body, .inputForm, .card, .about-header, .about-form, .about-cards {
+.card-body,
+.inputForm,
+.card,
+.about-header,
+.about-form,
+.about-cards {
     color: white;
     background: rgba(0, 0, 0, 0.6);
     border-radius: 5px;
     margin-top: 6px;
     margin-bottom: 8px;
     padding: 10px;
+}
+
+.carousel-caption {
+    color: white;
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 5px;
+    margin-bottom: 2rem;
+    padding: 10px;
+}
+
+.carousel-caption > p {
+    margin: 0;
 }
 
 .carouselControls {
@@ -69,7 +97,7 @@ body {
 .ball-pulse-sync {
     display: none;
     text-align: center;
-    padding-top: 1rem;
+    padding-top: .6rem;
 }
 
 #results-page {
@@ -99,14 +127,33 @@ body {
     height: 200px;
 }
 
-.gm-style-cc, .gm-style>div>a>div>img  {
+.gm-style-cc,
+.gm-style>div>a>div>img {
     display: none;
+}
+
+.emojis {
+    font-size: 2rem;
 }
 
 .card-deck {
     justify-content: space-evenly;
- }
- 
- .card-deck > .row {
+}
+
+.card-img-top {
+    border-radius: 5px !important;
+}
+
+.card-text {
+    min-height: 3rem;
+    margin: 0;
+}
+
+.card-deck>.row {
     margin-bottom: 2rem;
- }
+}
+
+.github {
+    bottom: 0;
+    right: 0;
+}

@@ -206,10 +206,12 @@ var states = [{
 
 $(document).ready(function () {
 
+   // Enables all popovers.
    $(function () {
       $('[data-toggle="popover"]').popover()
     });
 
+   // Animated the pin icon in the navbar.
    animateNormCSS(".fa-map-pin", "bounceInDown");
 
    var clientIDFoursquare = "QIQOY4DP1NMCYBBDMXYYQOYI0TQDGUX0WJRR5QUJZYV2NLUD";
@@ -224,6 +226,7 @@ $(document).ready(function () {
 
    var schoolZip;
 
+   // Builds the first drop-down menu based on the "states" array.
    for (var i = 0; i < states.length; i++) {
       stateChoice = $("<option>").text(states[i].name).attr("value", states[i].abbreviation);
       $("#state-selection").append(stateChoice);
@@ -231,7 +234,6 @@ $(document).ready(function () {
 
    $("#state-selection").change(function () {
 
-      var stateSchools = [];
       var dataGovPageNumber = 0;
       var resultsTotal = 0;
       var totalNumberOfSchools = 0;
@@ -250,17 +252,16 @@ $(document).ready(function () {
 
          // Pulls stored school-id from option HTML element
          searchSchoolId = $("#school-selection option:selected").attr("data-id");
-         console.log(searchSchoolId);
 
+         // Checks to ensure an institution was selected before generating results.
+         // If no institution is selected and the "Submit" button clicked, a popover is shown.
          if (searchSchoolId === undefined) {
-               console.log(searchSchoolId, "run popover");
                $("#search").popover("show");
                setTimeout(function () {
                    $("#search").popover("hide");
                }, 2000);
          } else {
             $("#search").popover("hide");
-            console.log(searchSchoolId, "no popover");
             animateCSS("#selection-page", "fadeOut", function () {
                $("#selection-page").hide();
                $("#results-page").show();
@@ -302,10 +303,10 @@ $(document).ready(function () {
                   method: "GET",
                   success: function (response) {
                      var tempF = (Math.floor((response.main.temp - 273.15) * 1.80 + 32));
-                     $("#weather").text("The current temp at " + schoolName + " is " + tempF + ".")
+                     $("#weather").text("The current temp at " + schoolName + " is " + tempF + "\u00B0F.")
                   },
                   error: function () {
-                     $("#weather").text("Whoops! 😕 This is not a valid location.");
+                     $("#weather").text("Whoops! 🤦‍♂️ Something went wrong.");
                   }
                });
 
@@ -325,10 +326,10 @@ $(document).ready(function () {
             method: "GET"
          }).then(function (response) {
             var results = response.results;
-            var resultsLength = response.results.length; // 100
-            totalNumberOfSchools = response.metadata.total; // 176
+            var resultsLength = response.results.length;
+            totalNumberOfSchools = response.metadata.total;
             resultsTotal = resultsTotal + resultsLength;
-            // Loops through the results to dynamically create dropdown menu options.
+            // Loops through the results to dynamically create drop-down menu options.
             for (var j = 0; j < results.length; j++) {
                schoolChoice = $("<option>").text(results[j]["school.name"]);
                schoolChoice.attr("value", results[j]["school.name"]);
@@ -340,7 +341,6 @@ $(document).ready(function () {
             // The function calls itself if there are more schools than the result query max of 100.
             if (resultsTotal < totalNumberOfSchools) {
                getInstitution(num);
-
             } else {
                $(".ball-pulse-sync").hide();
                $("#school-group").attr("class", "animated zoomIn faster")
@@ -349,6 +349,8 @@ $(document).ready(function () {
          });
       };
 
+      // Google Maps Initialization.
+      // Will take in latitude, longitude, and the name of the institution.
       function initMap(num1, num2, str) {
          var myMarker = {
             lat: num1,
@@ -397,10 +399,6 @@ $(document).ready(function () {
             locationAddress.push(response.response.groups[0].items[i].venue.location.formattedAddress[0])
             locationCity.push(response.response.groups[0].items[i].venue.location.formattedAddress[1]);
          }
-         console.log(response.response.groups[0].items);
-         console.log(fitnessResults);
-         console.log(locationAddress);
-         console.log(locationCity);
          for (var j = 0; j < fitnessResults.length; j++) {
             var newCard = $("<div class='row'><div class=card  style='width: 18rem;'><div class='card-body' data-fitness=" + j + "><img src='http://assets.dmagstatic.com/wp-content/uploads/2019/01/iStock-871070868-677x451.jpg' class='card-img-top' alt='event-image'><h5 class='card-title mt-2'>" + fitnessResults[j] + "</h5><p class='card-text'>" + locationAddress[j] + "</p><p class='card-text'>" + locationCity[j] + "</p></div></div></div>")
             $("#result-card-deck").append(newCard);
@@ -437,10 +435,6 @@ $(document).ready(function () {
             locationAddress.push(response.response.groups[0].items[i].venue.location.formattedAddress[0]);
             locationCity.push(response.response.groups[0].items[i].venue.location.formattedAddress[1]);
          }
-         console.log(response.response.groups[0].items);
-         console.log(foodResults);
-         console.log(locationAddress);
-         console.log(locationCity);
          for (var j = 0; j < foodResults.length; j++) {
             var newCard = $("<div class='row'><div class=card  style='width: 18rem;'><div class='card-body' data-food=" + j + "><img src='http://www.studentbrands.co.za/wp-content/uploads/2016/05/2D_SpitBill.jpg' class='card-img-top' alt='event-image'><h5 class='card-title mt-2'>" + foodResults[j] + "</h5><p class='card-text'>" + locationAddress[j] + "</p><p class='card-text'>" + locationCity[j] + "</p></div></div></div>")
             $("#result-card-deck").append(newCard);
@@ -477,10 +471,6 @@ $(document).ready(function () {
             locationAddress.push(response.response.groups[0].items[i].venue.location.formattedAddress[0]);
             locationCity.push(response.response.groups[0].items[i].venue.location.formattedAddress[1]);
          }
-         console.log(response.response.groups[0].items);
-         console.log(shopResults);
-         console.log(locationAddress);
-         console.log(locationCity);
          for (var j = 0; j < shopResults.length; j++) {
             var newCard = $("<div class='row'><div class=card  style='width: 18rem;'><div class='card-body' data-shop=" + j + "><img src='http://www.cbc.ca/parents/content/imgs/kidsatconcerts_lead_emissio.jpg' class='card-img-top' alt='event-image'><h5 class='card-title mt-2'>" + shopResults[j] + "</h5><p class='card-text'>" + locationAddress[j] + "</p><p class='card-text'>" + locationCity[j] + "</p></div></div></div>")
             $("#result-card-deck").append(newCard);
@@ -488,7 +478,6 @@ $(document).ready(function () {
       });
 
    });
-
 
    //On-Click function for when event topic card is clicked. Making call to FourSquare API for restaurants in the area.
    $("#parksButton").on("click", function () {
@@ -517,10 +506,6 @@ $(document).ready(function () {
             locationAddress.push(response.response.groups[0].items[i].venue.location.formattedAddress[0]);
             locationCity.push(response.response.groups[0].items[i].venue.location.formattedAddress[1]);
          }
-         console.log(response.response.groups[0].items);
-         console.log(parkResults);
-         console.log(locationAddress);
-         console.log(locationCity);
          for (var j = 0; j < parkResults.length; j++) {
             var newCard = $("<div class='row'><div class=card  style='width: 18rem;'><div class='card-body' data-park=" + j + "><img src='http://www.studentbrands.co.za/wp-content/uploads/2016/05/2D_SpitBill.jpg' class='card-img-top' alt='event-image'><h5 class='card-title mt-2'>" + parkResults[j] + "</h5><p class='card-text'>" + locationAddress[j] + "</p><p class='card-text'>" + locationCity[j] + "</p></div></div></div>")
             $("#result-card-deck").append(newCard);
@@ -531,6 +516,7 @@ $(document).ready(function () {
 
 });
 
+// Animate.CSS function to include 'faster' class
 function animateCSS(element, animationName, callback) {
    const node = document.querySelector(element);
    node.classList.add('animated', animationName, "faster");
@@ -545,6 +531,7 @@ function animateCSS(element, animationName, callback) {
    node.addEventListener('animationend', handleAnimationEnd);
 };
 
+// Animate.CSS function. Normal speed.
 function animateNormCSS(element, animationName, callback) {
    const node = document.querySelector(element);
    node.classList.add('animated', animationName);
