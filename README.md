@@ -13,14 +13,16 @@ Project 1 for Vanderbilt Coding Bootcamp class, this app aims to help users find
 PinPoint uses:
 
 * [Bootstrap]
-* [jQuery]
+* [Javascript/jQuery]
 * [Animate.css]
+* [Loaders.css]
 
-# Ajax Resources
+# API Resources
   
   * [Data.gov]
   * [OpenWeatherMap]
   * [Foursquare]
+  * [Google Maps]
 
 # Contributors
 
@@ -31,11 +33,13 @@ PinPoint uses:
 
 
   [Bootstrap]: <https://getbootstrap.com/>
-  [jQuery]: <https://jquery.com/>
+  [Javascript/jQuery]: <https://jquery.com/>
   [Animate.css]: <https://daneden.github.io/animate.css/>
+  [Loaders.css]: <https://connoratherton.com/loaders>
   [Data.gov]: <https://www.data.gov/developers/apis>
   [OpenWeatherMap]: <https://openweathermap.org/api>
   [Foursquare]: <https://developer.foursquare.com/>
+  [Google Maps]: <https://developers.google.com/maps/documentation/javascript/tutorial>
   [Patricia Correia]: <https://github.com/heyimhibi>
   [Terrence Mahnken]: <https://github.com/TerrenceMM2>
   [Gavin Akins]: <https://github.com/GBAkins>
